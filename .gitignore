@@ -1,0 +1,7 @@
+*.log
+.greenwood/
+.vscode/
+node_modules/
+public/
+reports/
+storybook-static/
