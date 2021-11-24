@@ -1,0 +1,23 @@
+{
+  "name": "www.tuesdaystunes.tv",
+  "version": "0.1.0",
+  "description": "Website repo for Tuesday's Tunes",
+  "license": "ISC",
+  "keywords": [
+    "Analog Studios",
+    "Tuesday's Tunes"
+  ],
+  "author": "Owen Buckley <owen@thegreenhouse.io>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv.git"
+  },
+  "scripts": {
+    "develop": "greenwood develop",
+    "build": "greenwood build",
+    "serve": "greenwood serve"
+  },
+  "devDependencies": {
+    "@greenwood/cli": "^0.19.3"
+  }
+}
