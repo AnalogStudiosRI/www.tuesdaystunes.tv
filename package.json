@@ -13,7 +13,7 @@
     "url": "git+https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv.git"
   },
   "scripts": {
-    "clean": "rimraf public",
+    "clean": "rimraf public/ .greenwood/",
     "develop": "greenwood develop",
     "build": "greenwood build",
     "serve": "greenwood serve"
