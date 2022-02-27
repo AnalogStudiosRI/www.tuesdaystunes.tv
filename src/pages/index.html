@@ -10,17 +10,13 @@
     <meta property="og:url" content="http://www.tuesdaystunes.tv/" />
     <meta property="og:image" content="http://www.tuesdaystunes.tv/assets/tuesdays-tunes.jpg">
 
+    <script type="module" src="../components/banner.js" data-gwd-opt="static"></script>
+    <script type="module" src="../components/header.js" data-gwd-opt="static"></script>
     <script type="module" src="../components/footer.js" data-gwd-opt="static"></script>
 
     <style>
       body {
         background-color: darkslateblue;
-      }
-
-      h1 {
-        width: 90%;
-        margin: 30px auto;
-        text-align: center;
       }
 
       div {
@@ -30,12 +26,6 @@
         color: white;
       }
 
-      img {
-        display: block;
-        width: 50%;
-        margin: 0 auto 20px;
-      }
-
       a {
         color: white;
       }
@@ -43,16 +33,38 @@
   </head>
 
   <body>
-    <h1>Coming Soon!</h1>
+    <section>
+      <tt-header></tt-header>
+    </section>
 
-    <div>
+    <section>
+      <main>
+        <tt-banner></tt-banner>
+      </main>
+    </section>
+
+
+    <section>
       <tt-footer>
-        <img src="/assets/tuesdays-tunes.jpg"/>
         <a href="https://www.youtube.com/user/analogstudios">YouTube</a> |
         <a href="https://www.facebook.com/dave.flamand.1426">Facebook</a> |
         <a href="https://open.spotify.com/playlist/1jOFrovuxCGulkGdUhR5f7?si=R1ZowQxqSRefj6HLOasSEQ&nd=1">Spotify</a>
       </tt-footer>
-    </div>
+    </section>
+
+    <script>
+      if (!HTMLTemplateElement.prototype.hasOwnProperty('shadowRoot')) {
+        (function attachShadowRoots(root) {
+          root.querySelectorAll("template[shadowroot]").forEach(template => {
+            const mode = template.getAttribute("shadowroot");
+            const shadowRoot = template.parentNode.attachShadow({ mode });
+            shadowRoot.appendChild(template.content);
+            template.remove();
+            attachShadowRoots(shadowRoot);
+          });
+        })(document);
+      }
+    </script>
   </body>
 
 </html>

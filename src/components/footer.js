@@ -1,6 +1,15 @@
-import { html, LitElement } from 'lit';
+import { css, html, LitElement } from 'lit';
 
 class FooterComponent extends LitElement {
+
+  static styles = css`
+    footer {
+      width: 90%;
+      margin: 0 auto;
+      text-align: center;
+      color: white;
+    }
+  `;
 
   render() {
     const year = new Date().getFullYear();
