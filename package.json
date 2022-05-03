@@ -19,7 +19,7 @@
     "serve": "greenwood serve"
   },
   "devDependencies": {
-    "@greenwood/cli": "^0.19.3",
+    "@greenwood/cli": "^0.25.0",
     "rimraf": "^3.0.2"
   }
 }
