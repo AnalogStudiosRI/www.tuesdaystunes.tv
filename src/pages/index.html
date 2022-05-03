@@ -11,8 +11,15 @@
     <meta property="og:image" content="http://www.tuesdaystunes.tv/assets/tuesdays-tunes.webp">
 
     <style>
+      :root {
+        --color-primary: #fbe1a6;
+        --color-secondary: #402b1a;
+        --color-accent: #ef9d00;
+      }
+
       body {
-        background-color: darkslateblue;
+        background-color: var(--color-primary);
+        color: var(--color-secondary);
       }
 
       h1 {
@@ -25,7 +32,7 @@
         width: 90%;
         margin: 0 auto;
         text-align: center;
-        color: white;
+        color: var(--color-accent);
       }
 
       img {
@@ -35,7 +42,8 @@
       }
 
       a {
-        color: white;
+        color: var(--color-secondary);
+        font-weight: bold;
       }
     </style>
   </head>
