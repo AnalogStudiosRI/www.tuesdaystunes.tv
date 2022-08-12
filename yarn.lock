@@ -23,14 +23,13 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@greenwood/cli@^0.25.0":
-  version "0.25.0"
-  resolved "https://registry.yarnpkg.com/@greenwood/cli/-/cli-0.25.0.tgz#b0b29513258a3009bbe7e7cca92874a056501fb5"
-  integrity sha512-JIsgYMPTkdNgCN8GtG9Us/g1lw5V4uE9PawszyTPmEav2m0hGAfhLAhhLDAZOgrIm7DUX+k+7oc4nD6Ermt8hA==
+"@greenwood/cli@^0.26.0":
+  version "0.26.0"
+  resolved "https://registry.yarnpkg.com/@greenwood/cli/-/cli-0.26.0.tgz#18784c9d435a47a59381a9abf32b2f82652a54b5"
+  integrity sha512-CcxNBxwQGAnu8dnbcsx51EThoHQxr49J0ZCfhXmaB/DvhZvMwXYeJ6ihnWAmSLhlgGr087qJFojyqo3zi3jBtg==
   dependencies:
     "@rollup/plugin-node-resolve" "^13.0.0"
     "@rollup/plugin-replace" "^2.3.4"
-    "@webcomponents/webcomponentsjs" "^2.6.0"
     acorn "^8.0.1"
     acorn-walk "^8.0.0"
     commander "^2.20.0"
@@ -52,6 +51,7 @@
     rollup "^2.58.0"
     rollup-plugin-terser "^7.0.0"
     unified "^9.2.0"
+    wc-compiler "~0.5.0"
 
 "@rollup/plugin-node-resolve@^13.0.0":
   version "13.0.6"
@@ -128,11 +128,6 @@
   resolved "https://registry.yarnpkg.com/@types/unist/-/unist-2.0.6.tgz#250a7b16c3b91f672a24552ec64678eeb1d3a08d"
   integrity sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==
 
-"@webcomponents/webcomponentsjs@^2.6.0":
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-2.6.0.tgz#7d1674c40bddf0c6dd974c44ffd34512fe7274ff"
-  integrity sha512-Moog+Smx3ORTbWwuPqoclr+uvfLnciVd6wdCaVscHPrxbmQ/IJKm3wbB7hpzJtXWjAq2l/6QMlO85aZiOdtv5Q==
-
 accepts@^1.3.5:
   version "1.3.7"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"
@@ -141,7 +136,7 @@ accepts@^1.3.5:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
-acorn-walk@^8.0.0:
+acorn-walk@^8.0.0, acorn-walk@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.2.0.tgz#741210f2e2426454508853a2f44d0ab83b7f69c1"
   integrity sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
@@ -150,6 +145,11 @@ acorn@^8.0.1:
   version "8.6.0"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.6.0.tgz#e3692ba0eb1a0c83eaa4f37f5fa7368dd7142895"
   integrity sha512-U1riIR+lBSNi3IbxtaHOIKdH8sLFv3NYfNv8sg7ZsNhcfl4HF2++BfqqrNAxoCLQW1iiylOj76ecnaUxz+z9yw==
+
+acorn@^8.7.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.0.tgz#88c0187620435c7f6015803f5539dae05a9dbea8"
+  integrity sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==
 
 ansi-red@^0.1.1:
   version "0.1.1"
@@ -1444,7 +1444,7 @@ parse-entities@^2.0.0:
     is-decimal "^1.0.0"
     is-hexadecimal "^1.0.0"
 
-parse5@^6.0.0:
+parse5@^6.0.0, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
@@ -2188,6 +2188,15 @@ vfile@^4.0.0:
     is-buffer "^2.0.0"
     unist-util-stringify-position "^2.0.0"
     vfile-message "^2.0.0"
+
+wc-compiler@~0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/wc-compiler/-/wc-compiler-0.5.0.tgz#869739ba765e41ac699b08a5991c52231ef2fbe0"
+  integrity sha512-ScHbrtd81cvMEg8tn7L/iSc1WhckNKIB77VGhZYxMNELHmgQdMuC/r36E/LhAHdqAJYxi4y77DXmU56BZzeBng==
+  dependencies:
+    acorn "^8.7.0"
+    acorn-walk "^8.2.0"
+    parse5 "^6.0.1"
 
 web-namespaces@^1.0.0:
   version "1.1.4"
