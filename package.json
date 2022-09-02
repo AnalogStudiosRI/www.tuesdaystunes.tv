@@ -2,6 +2,7 @@
   "name": "www.tuesdaystunes.tv",
   "version": "0.1.0",
   "description": "Website repo for Tuesday's Tunes",
+  "type": "module",
   "license": "ISC",
   "keywords": [
     "Analog Studios",
@@ -13,13 +14,24 @@
     "url": "git+https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv.git"
   },
   "scripts": {
-    "clean": "rimraf public/ .greenwood/",
-    "develop": "greenwood develop",
+    "clean": "rimraf public/ .greenwood/ ./storybook-static",
+    "dev": "greenwood develop",
     "build": "greenwood build",
-    "serve": "greenwood serve"
+    "serve": "greenwood serve",
+    "story:dev": "start-storybook -p 6006",
+    "story:build": "build-storybook",
+    "story:serve": "build-storybook && http-server ./storybook-static"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.13",
     "@greenwood/cli": "^0.26.0",
+    "@storybook/addon-actions": "^6.5.10",
+    "@storybook/addon-essentials": "^6.5.10",
+    "@storybook/addon-links": "^6.5.10",
+    "@storybook/builder-webpack4": "^6.5.10",
+    "@storybook/manager-webpack4": "^6.5.10",
+    "babel-loader": "^8.2.5",
+    "http-server": "^14.1.1",
     "rimraf": "^3.0.2"
   }
 }
