@@ -3,14 +3,14 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/03f43ad6-9b13-4a85-b682-d3a95a3e359d/deploy-status)](https://app.netlify.com/sites/laughing-kare-be3077/deploys)
 
 ## Overview
-This is the frontend repo for the [Tuesday's Tuneswebsite](https://www.tuesdaystunes.tv) built with [Greenwood](https://www.greenwoodjs.io/).
+This is the frontend repo for the [Tuesday's Tunes website](https://www.tuesdaystunes.tv) built with [Greenwood](https://www.greenwoodjs.io/).
 
 ## Development
 Stuff to do / run. 🏃‍♂️
 
 ### Setup
 After cloning the repo, do the following to get up and running
-1. Install [NodeJS](https://nodejs.org/en/) (LTS) or [`nvm use`](https://github.com/nvm-sh/nvm)
+1. Install [NodeJS](https://nodejs.org/en/) (LTS) or run [`nvm use`](https://github.com/nvm-sh/nvm)
 1. Install [Yarn](https://yarnpkg.com/en/) (>= 1.x)
 1. Run `yarn install`
 
