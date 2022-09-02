@@ -14,23 +14,29 @@
     "url": "git+https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv.git"
   },
   "scripts": {
-    "clean": "rimraf public/ .greenwood/ ./storybook-static",
     "dev": "greenwood develop",
     "build": "greenwood build",
-    "lint": "eslint \"*.{js,cjs,mjs}\" \"./src/**/*.js\" \"./.storybook/**/*.{js,cjs}\"",
     "serve": "greenwood serve",
     "story:dev": "start-storybook -p 6006",
     "story:build": "build-storybook",
-    "story:serve": "build-storybook && http-server ./storybook-static"
+    "story:serve": "build-storybook && http-server ./storybook-static",
+    "test": "wtr",
+    "test:tdd": "yarn test --watch",
+    "clean": "rimraf public/ .greenwood/ ./storybook-static",
+    "lint": "eslint \"*.{js,cjs,mjs}\" \"./src/**/*.js\" \"./.storybook/**/*.{js,cjs}\""
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
+    "@esm-bundle/chai": "^4.3.4",
     "@greenwood/cli": "^0.26.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-links": "^6.5.10",
     "@storybook/builder-webpack4": "^6.5.10",
     "@storybook/manager-webpack4": "^6.5.10",
+    "@web/test-runner": "^0.13.13",
+    "@web/test-runner-junit-reporter": "^0.4.4",
+    "@web/test-runner-puppeteer": "^0.10.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "http-server": "^14.1.1",

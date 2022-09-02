@@ -1,7 +1,7 @@
 export default class Footer extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
-      <footer><h6>Tuesdays Tunes &copy${new Date().getFullYear()}</h6></footer>
+      <footer><h6 id="copyright">Tuesday's Tunes &copy${new Date().getFullYear()}</h6></footer>
     `;
   }
 }
