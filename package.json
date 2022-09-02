@@ -22,24 +22,32 @@
     "story:serve": "build-storybook && http-server ./storybook-static",
     "test": "wtr",
     "test:tdd": "yarn test --watch",
-    "clean": "rimraf public/ .greenwood/ ./storybook-static",
-    "lint": "eslint \"*.{js,cjs,mjs}\" \"./src/**/*.js\" \"./.storybook/**/*.{js,cjs}\""
+    "lint": "ls-lint && yarn lint:js && yarn lint:css",
+    "lint:js": "eslint \"*.js\" \"src/**/**/*.js\"",
+    "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
+    "clean": "rimraf public/ .greenwood/ ./storybook-static"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
     "@esm-bundle/chai": "^4.3.4",
     "@greenwood/cli": "^0.26.0",
+    "@ls-lint/ls-lint": "^1.10.0",
     "@storybook/addon-actions": "^6.5.10",
     "@storybook/addon-essentials": "^6.5.10",
     "@storybook/addon-links": "^6.5.10",
     "@storybook/builder-webpack4": "^6.5.10",
     "@storybook/manager-webpack4": "^6.5.10",
+    "@storybook/web-components": "^6.5.10",
     "@web/test-runner": "^0.13.13",
     "@web/test-runner-junit-reporter": "^0.4.4",
     "@web/test-runner-puppeteer": "^0.10.0",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "http-server": "^14.1.1",
-    "rimraf": "^3.0.2"
+    "lit-html": "^2.3.1",
+    "rimraf": "^3.0.2",
+    "stylelint": "^13.8.0",
+    "stylelint-a11y": "^1.2.3",
+    "stylelint-config-standard": "^20.0.0"
   }
 }
