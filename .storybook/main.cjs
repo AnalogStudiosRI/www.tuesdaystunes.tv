@@ -8,4 +8,4 @@ module.exports = {
     '@storybook/addon-essentials'
   ],
   framework: '@storybook/web-components'
-}
+};

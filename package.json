@@ -23,7 +23,7 @@
     "test": "wtr",
     "test:tdd": "yarn test --watch",
     "lint": "ls-lint && yarn lint:js && yarn lint:css",
-    "lint:js": "eslint \"*.js\" \"src/**/**/*.js\"",
+    "lint:js": "eslint \"*.{js,cjs}\" \".storybook/*.{js,cjs}\" \"src/**/**/*.js\"",
     "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
     "clean": "rimraf public/ .greenwood/ ./storybook-static"
   },
