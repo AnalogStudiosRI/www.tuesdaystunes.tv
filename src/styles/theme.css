@@ -1,0 +1,22 @@
+@import "../../node_modules/font-awesome/css/font-awesome.css";
+@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
+
+:root, :host {
+  /* raw tokens */
+  --orange: #fbe1a6;
+  --brown: #402b1a;
+  --yellow: #ef9d00;
+  --blue: #075154;
+
+  /* design system - colors */
+  --color-primary: var(--orange);
+  --color-secondary: var(--brown);
+  --color-tertiary: var(--blue);
+  --color-accent: var(--yellow);
+
+  /* design system - typography */
+  --font-family-primary: "Cooper Black", serif;
+
+  /* misc */
+  --img-width-mobile: 200px;
+}
