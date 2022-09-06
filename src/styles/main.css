@@ -11,20 +11,20 @@ body {
 /* Typography */
 
 .heading {
-  font-family: "Cooper Black", serif;
-  font-size: 22px;
+  font-family:  var(--font-family-heading);
+  font-size: var(--font-heading-size);
   font-weight: regular;
 }
 
 .sub-heading {
-  font-family: "Georgia", serif;
-  font-size: 11px;
+  font-family: var(--font-family-text);
+  font-size: var(--font-text-size);
   font-weight: bold;
 }
 
 .text {
-  font-family: "Georgia", serif;
-  font-size: 11px;
+  font-family: var(--font-family-text);
+  font-size: var(--font-text-size);
 }
 
 /* End of typography */
@@ -57,52 +57,3 @@ h6 {
   text-align: center;
 }
 
-/* ------ Header ------ */
-
-.header {
-  width: 100%;
-  margin: 6rem 0px;
-  display: none;
-}
-
-.title {
-  padding: 2rem;
-}
-
-.title img {
-  width: 100%;
-}
-
-/* navbar */
-
-.navbar {
-  width: 100%;
-  background-color: var(--color-primary);
-  overflow: auto;
-  border-top: 1.5px solid rgb(54, 53, 53);
-  border-bottom: 1.5px solid rgb(54, 53, 53);
-}
-
-.navbar a {
-  float: left;
-  padding: 12px;
-  color: black;
-  text-decoration: none;
-  font-size: 17px;
-  width: 25%; /* Four links of equal widths */
-  text-align: center;
-}
-
-.navbar a:hover,
-.navbar a.active {
-  color: var(--color-accent);
-}
-
-@media screen and (max-width: 500px) {
-  .navbar a {
-    float: none;
-    display: block;
-    width: 100%;
-    text-align: left;
-  }
-}
