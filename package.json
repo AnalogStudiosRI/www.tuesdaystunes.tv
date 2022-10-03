@@ -15,8 +15,8 @@
   },
   "scripts": {
     "dev": "greenwood develop",
-    "build": "greenwood build",
-    "serve": "greenwood serve",
+    "build": "NODE_ENV=production greenwood build",
+    "serve": "NODE_ENV=production greenwood serve",
     "story:dev": "start-storybook -p 6006",
     "story:build": "build-storybook",
     "story:serve": "build-storybook && http-server ./storybook-static",
@@ -40,10 +40,11 @@
     "@storybook/builder-webpack4": "^6.5.10",
     "@storybook/manager-webpack4": "^6.5.10",
     "@storybook/web-components": "^6.5.10",
+    "@tailwindcss/postcss7-compat": "^2.2.17",
     "@web/test-runner": "^0.13.13",
     "@web/test-runner-junit-reporter": "^0.4.4",
     "@web/test-runner-puppeteer": "^0.10.0",
-    "autoprefixer": "^10.4.12",
+    "autoprefixer": "^9.8.8",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "http-server": "^14.1.1",
@@ -52,6 +53,6 @@
     "stylelint": "^13.8.0",
     "stylelint-a11y": "^1.2.3",
     "stylelint-config-standard": "^20.0.0",
-    "tailwindcss": "^3.1.8"
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
