@@ -1,13 +1,33 @@
-:root {
-  --color-primary: #fbe1a6;
-  --color-secondary: #402b1a;
-  --color-accent: #ef9d00;
+* {
+  box-sizing: border-box;
 }
 
 body {
   background-color: var(--color-primary);
   color: var(--color-secondary);
+  margin: 0;
 }
+
+/* Typography */
+
+.heading {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-heading-size);
+  font-weight: regular;
+}
+
+.sub-heading {
+  font-family: var(--font-family-text);
+  font-size: var(--font-text-size);
+  font-weight: bold;
+}
+
+.text {
+  font-family: var(--font-family-text);
+  font-size: var(--font-text-size);
+}
+
+/* End of typography */
 
 h1 {
   width: 90%;

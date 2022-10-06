@@ -1,0 +1,23 @@
+:root,
+:host {
+  /* raw tokens */
+  --orange: #fbe1a6;
+  --brown: #402b1a;
+  --yellow: #ef9d00;
+  --blue: #075154;
+
+  /* design system - colors */
+  --color-primary: var(--orange);
+  --color-secondary: var(--brown);
+  --color-tertiary: var(--blue);
+  --color-accent: var(--yellow);
+
+  /* design system - typography */
+  --font-family-heading: "Cooper Black", serif;
+  --font-family-text: "Georgia", serif;
+  --font-heading-size: "22px";
+  --font-text-size: "11px";
+
+  /* misc */
+  --img-width-mobile: 200px;
+}
