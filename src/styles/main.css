@@ -1,33 +1,11 @@
-* {
-  box-sizing: border-box;
-}
+@import './theme.css';
 
+html,
 body {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  margin: 0;
+  font-family: var(--font-primary);
 }
-
-/* Typography */
-
-.heading {
-  font-family: var(--font-family-heading);
-  font-size: var(--font-heading-size);
-  font-weight: regular;
-}
-
-.sub-heading {
-  font-family: var(--font-family-text);
-  font-size: var(--font-text-size);
-  font-weight: bold;
-}
-
-.text {
-  font-family: var(--font-family-text);
-  font-size: var(--font-text-size);
-}
-
-/* End of typography */
 
 h1 {
   width: 90%;
