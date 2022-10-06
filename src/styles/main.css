@@ -5,13 +5,13 @@
 body {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  margin: 0px;
+  margin: 0;
 }
 
 /* Typography */
 
 .heading {
-  font-family:  var(--font-family-heading);
+  font-family: var(--font-family-heading);
   font-size: var(--font-heading-size);
   font-weight: regular;
 }
@@ -56,4 +56,3 @@ a {
 h6 {
   text-align: center;
 }
-
