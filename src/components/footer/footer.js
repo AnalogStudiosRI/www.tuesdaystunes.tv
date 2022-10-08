@@ -25,6 +25,7 @@ export default class Footer extends HTMLElement {
 
               return `
                 <a
+                  class="social-link"
                   href="${url}"
                   title="Visit our ${name} page"
                 >
