@@ -18,7 +18,7 @@ export default class Footer extends HTMLElement {
 
     this.innerHTML = `
       <footer>
-        <div class="grid grid-cols-3">
+        <div class="text-center">
           ${
             socialLinks.map((link) => {
               const { name, url } = link;
@@ -29,7 +29,7 @@ export default class Footer extends HTMLElement {
                   title="Visit our ${name} page"
                 >
                   <img
-                    class="w-6"
+                    class="inline-block mx-5 my-2 w-6 h-6 text-gray-500 text-center"
                     src="/assets/icons/${name.toLowerCase()}.svg"
                     alt="${name} Logo"
                   />
@@ -39,14 +39,13 @@ export default class Footer extends HTMLElement {
           }
         </div>
 
-        <p id="copyright" class="block text-xs text-center text-gray-500">
+        <p class="text-xs text-center text-gray-500">
           Copyright &copy${new Date().getFullYear()} Analog Studios / TuesdaysTunes.tv
         </p>
 
-        <span class="text-center text-xs block">
+        <span class="block my-1 text-center text-xs">
           &lt;
-            <a target="_blank" href="https://icons8.com/">Icons</a> by
-            <a target="_blank" href="https://icons8.com">Icons8</a>
+            Icons by <a target="_blank" href="https://icons8.com/">Icons8</a>
           &gt;
         <span>
       </footer>
