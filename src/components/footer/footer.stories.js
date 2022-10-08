@@ -1,3 +1,4 @@
+import '../../styles/theme.css';
 import './footer.js';
 
 export default {
