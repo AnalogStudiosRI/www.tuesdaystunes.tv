@@ -6,31 +6,3 @@ body {
   color: var(--color-secondary);
   font-family: var(--font-primary);
 }
-
-/* h1 {
-  width: 90%;
-  margin: 30px auto;
-  text-align: center;
-}
-
-div {
-  width: 90%;
-  margin: 0 auto;
-  text-align: center;
-  color: var(--color-accent);
-}
-
-img {
-  display: block;
-  width: 50%;
-  margin: 0 auto 20px;
-}
-
-a {
-  color: var(--color-secondary);
-  font-weight: bold;
-}
-
-h6 {
-  text-align: center;
-} */
