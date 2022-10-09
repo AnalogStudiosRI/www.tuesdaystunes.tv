@@ -24,6 +24,7 @@ export default class CastAndCrew extends HTMLElement {
     const { profiles } = this;
 
     this.innerHTML = `
+<<<<<<< HEAD
       <div class="profiles">
         </hr>
         <h2 
@@ -33,6 +34,12 @@ export default class CastAndCrew extends HTMLElement {
           The Crew
         </h2>
         </hr>
+=======
+      <div>
+        </br>
+        <h2 class="text-lg text-center">Cast and Crew</h2>
+        </br>
+>>>>>>> 03dd8f9 (initial version of cast and crew section)
 
         <div class="grid md:grid-cols-4 grid-cols-2">
           ${
@@ -40,9 +47,15 @@ export default class CastAndCrew extends HTMLElement {
               const { avatar, name, title } = person;
 
               return `
+<<<<<<< HEAD
                 <div class="text-center">
                   <img
                     class="block w-20 rounded-full text-center"
+=======
+                <div class="text-center"">
+                  <img
+                    class="block w-10 rounded-full text-center"
+>>>>>>> 03dd8f9 (initial version of cast and crew section)
                     style="margin:0 auto"
                     src="${avatar}"
                     alt="Photo of ${name} (${title})"
@@ -50,7 +63,11 @@ export default class CastAndCrew extends HTMLElement {
                   <h3 class="font-bold text-center">
                     ${name}
                   </h3>
+<<<<<<< HEAD
                   <h4 class="uppercase text-center text-gray-500">
+=======
+                  <h4 class="text-center text-gray-500">
+>>>>>>> 03dd8f9 (initial version of cast and crew section)
                     ${title}
                   </h3>
                 </div>
