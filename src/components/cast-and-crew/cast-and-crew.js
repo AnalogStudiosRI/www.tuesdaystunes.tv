@@ -24,7 +24,7 @@ export default class CastAndCrew extends HTMLElement {
     const { profiles } = this;
 
     this.innerHTML = `
-      <div>
+      <div class="profiles">
         </hr>
         <h2 
           class="text-3xl text-center font-extrabold"
@@ -40,7 +40,7 @@ export default class CastAndCrew extends HTMLElement {
               const { avatar, name, title } = person;
 
               return `
-                <div class="text-center"">
+                <div class="text-center">
                   <img
                     class="block w-20 rounded-full text-center"
                     style="margin:0 auto"
