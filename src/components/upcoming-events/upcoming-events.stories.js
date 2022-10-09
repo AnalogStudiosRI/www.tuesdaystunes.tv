@@ -18,6 +18,14 @@ const MULTIPLE_EVENTS = [{
   title: 'Tuesdays Tunes Season 3 - Episode 2',
   timestamp: SINGLE_EVENT[0].timestamp + (86400000 * 30),
   link: 'http://www.facebook.com/'
+}, {
+  title: 'Tuesdays Tunes Season 3 - Teaser Trailer',
+  timestamp: SINGLE_EVENT[0].timestamp - (86400000 * 5),
+  link: 'http://www.facebook.com/'
+}, {
+  title: 'Tuesdays Tunes Season 3 - Episode 3',
+  timestamp: SINGLE_EVENT[0].timestamp + (86400000 * 45),
+  link: 'http://www.facebook.com/'
 }];
 
 export default {

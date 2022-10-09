@@ -17,7 +17,20 @@ export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
     const eventsByMonth = {};
     const events = (JSON.parse(this.getAttribute('events')) || [])
-      .filter(event => event.timestamp >= Date.now()) // filter out old events
+      .filter((event) => {
+        // filter out old events except ones that are also in the current month
+        const { timestamp } = event;
+        const now = new Date();
+
+        // set to be the beginning of the current month
+        now.setDate(1);
+        now.setFullYear(now.getFullYear());
+        now.setMonth(now.getMonth());
+
+        const isInCurrentMonth = timestamp >= now.getTime();
+
+        return event.timestamp >= now.getTime() || isInCurrentMonth;
+      })
       .sort((a, b) => a.timestamp < b.timestamp ? -1 : 1); // sort newest to latest
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
@@ -62,7 +75,7 @@ export default class UpcomingEvents extends HTMLElement {
                     <div>
                       <h3 
                         style="color:#efefef"
-                        class="text-center"
+                        class="text-center m-3"
                       >
                         <a 
                           href="${link}"
@@ -76,12 +89,14 @@ export default class UpcomingEvents extends HTMLElement {
                           </span>
                           <span
                             style="color:var(--color-secondary);"
-                          >${title} @ ${hour}pm</span>
+                            >
+                            ${title} @ ${hour}pm
+                          </span>
                         </a>
                       </h3>
                     </div>
                   `;
-                })}
+                }).join('')}
               </div>
             `;
           }).join('')
