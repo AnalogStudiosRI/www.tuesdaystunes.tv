@@ -1,0 +1,6 @@
+channel ID: UCxs5mxoDpmmR0hRbwsxU7Sg
+playlistURL: https://www.youtube.com/watch?v=qRskZcB5Rbc&list=PLrY8SmqJ5XZ_UvVurEvGg8i10g-cxMudZ&ab_channel=AnalogStudiosRI
+
+
+Get a API Key by following the guide
+- https://developers.google.com/youtube/v3/getting-started
