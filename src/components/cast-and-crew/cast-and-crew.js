@@ -25,6 +25,7 @@ export default class CastAndCrew extends HTMLElement {
 
     this.innerHTML = `
 <<<<<<< HEAD
+<<<<<<< HEAD
       <div class="profiles">
         </hr>
         <h2 
@@ -42,6 +43,9 @@ export default class CastAndCrew extends HTMLElement {
         </br>
 >>>>>>> 03dd8f9 (initial version of cast and crew section)
 =======
+=======
+      <div class="profiles">
+>>>>>>> 08af55f (add test cases)
         </hr>
         <h2 
           class="text-3xl text-center font-extrabold"
@@ -59,11 +63,15 @@ export default class CastAndCrew extends HTMLElement {
 
               return `
 <<<<<<< HEAD
+<<<<<<< HEAD
                 <div class="text-center">
                   <img
                     class="block w-20 rounded-full text-center"
 =======
                 <div class="text-center"">
+=======
+                <div class="text-center">
+>>>>>>> 08af55f (add test cases)
                   <img
 <<<<<<< HEAD
                     class="block w-10 rounded-full text-center"
