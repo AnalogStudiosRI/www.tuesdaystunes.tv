@@ -19,6 +19,9 @@ export default class UpcomingEvents extends HTMLElement {
     const events = (JSON.parse(this.getAttribute('events')) || [])
       .filter(event => event.timestamp >= Date.now()) // filter out old events
       .sort((a, b) => a.timestamp < b.timestamp ? -1 : 1); // sort newest to latest
+    const noEvents = events.length === 0
+      ? '<h2 class="text-center">No Upcoming Events</h2>'
+      : '';
 
     // group events by month
     events.forEach((event) => {
@@ -36,6 +39,8 @@ export default class UpcomingEvents extends HTMLElement {
     /* eslint-disable indent */
     this.innerHTML = `
       <div>
+        ${noEvents}
+  
         ${
           Object.keys(eventsByMonth).map((month) => {
             return `
