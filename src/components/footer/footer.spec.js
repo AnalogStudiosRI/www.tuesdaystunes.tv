@@ -47,26 +47,26 @@ describe('Components/Footer', () => {
 
     it('should have the expected YouTube link and logo in the footer', () => {
       const name = 'YouTube';
-      const facebookLink = Array.from(links).filter(link => link.getAttribute('href').indexOf(`${name.toLowerCase()}.com`) >= 0);
-      const facebookLogo = Array.from(logos).filter(logo => logo.getAttribute('src').indexOf(`${name.toLowerCase()}.svg`) >= 0);
+      const youtubeLink = Array.from(links).filter(link => link.getAttribute('href').indexOf(`${name.toLowerCase()}.com`) >= 0);
+      const youtubeLogo = Array.from(logos).filter(logo => logo.getAttribute('src').indexOf(`${name.toLowerCase()}.svg`) >= 0);
 
-      expect(facebookLink.length).to.equal(1);
-      expect(facebookLink[0].getAttribute('title')).to.equal(`Visit our ${name} page`);
+      expect(youtubeLink.length).to.equal(1);
+      expect(youtubeLink[0].getAttribute('title')).to.equal(`Visit our ${name} page`);
 
-      expect(facebookLogo.length).to.equal(1);
-      expect(facebookLogo[0].getAttribute('alt')).to.equal(`${name} Logo`);
+      expect(youtubeLogo.length).to.equal(1);
+      expect(youtubeLogo[0].getAttribute('alt')).to.equal(`${name} Logo`);
     });
 
     it('should have the expected Spotify link and logo in the footer', () => {
       const name = 'Spotify';
-      const facebookLink = Array.from(links).filter(link => link.getAttribute('href').indexOf(`${name.toLowerCase()}.com`) >= 0);
-      const facebookLogo = Array.from(logos).filter(logo => logo.getAttribute('src').indexOf(`${name.toLowerCase()}.svg`) >= 0);
+      const spotifyLink = Array.from(links).filter(link => link.getAttribute('href').indexOf(`${name.toLowerCase()}.com`) >= 0);
+      const spotifyLogo = Array.from(logos).filter(logo => logo.getAttribute('src').indexOf(`${name.toLowerCase()}.svg`) >= 0);
 
-      expect(facebookLink.length).to.equal(1);
-      expect(facebookLink[0].getAttribute('title')).to.equal(`Visit our ${name} page`);
+      expect(spotifyLink.length).to.equal(1);
+      expect(spotifyLink[0].getAttribute('title')).to.equal(`Visit our ${name} page`);
 
-      expect(facebookLogo.length).to.equal(1);
-      expect(facebookLogo[0].getAttribute('alt')).to.equal(`${name} Logo`);
+      expect(spotifyLogo.length).to.equal(1);
+      expect(spotifyLogo[0].getAttribute('alt')).to.equal(`${name} Logo`);
     });
 
     after(async () => {
