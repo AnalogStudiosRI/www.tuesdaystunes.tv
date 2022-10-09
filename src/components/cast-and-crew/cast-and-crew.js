@@ -36,10 +36,21 @@ export default class CastAndCrew extends HTMLElement {
         </hr>
 =======
       <div>
+<<<<<<< HEAD
         </br>
         <h2 class="text-lg text-center">Cast and Crew</h2>
         </br>
 >>>>>>> 03dd8f9 (initial version of cast and crew section)
+=======
+        </hr>
+        <h2 
+          class="text-3xl text-center font-extrabold"
+          style="margin:0 auto 25px;width: 20%;font-family:var(--font-secondary); border-top: 2px solid rgba(107, 114, 128); border-bottom: 2px solid rgba(107, 114, 128);"
+        >
+          The Crew
+        </h2>
+        </hr>
+>>>>>>> 6bd62ce (basic styling and theming of the header)
 
         <div class="grid md:grid-cols-4 grid-cols-2">
           ${
@@ -54,8 +65,12 @@ export default class CastAndCrew extends HTMLElement {
 =======
                 <div class="text-center"">
                   <img
+<<<<<<< HEAD
                     class="block w-10 rounded-full text-center"
 >>>>>>> 03dd8f9 (initial version of cast and crew section)
+=======
+                    class="block w-20 rounded-full text-center"
+>>>>>>> 6bd62ce (basic styling and theming of the header)
                     style="margin:0 auto"
                     src="${avatar}"
                     alt="Photo of ${name} (${title})"
@@ -64,10 +79,14 @@ export default class CastAndCrew extends HTMLElement {
                     ${name}
                   </h3>
 <<<<<<< HEAD
+<<<<<<< HEAD
                   <h4 class="uppercase text-center text-gray-500">
 =======
                   <h4 class="text-center text-gray-500">
 >>>>>>> 03dd8f9 (initial version of cast and crew section)
+=======
+                  <h4 class="uppercase text-center text-gray-500">
+>>>>>>> 6bd62ce (basic styling and theming of the header)
                     ${title}
                   </h3>
                 </div>
