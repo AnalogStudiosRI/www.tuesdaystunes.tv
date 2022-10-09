@@ -25,9 +25,14 @@ export default class CastAndCrew extends HTMLElement {
 
     this.innerHTML = `
       <div>
-        </br>
-        <h2 class="text-lg text-center">Cast and Crew</h2>
-        </br>
+        </hr>
+        <h2 
+          class="text-3xl text-center font-extrabold"
+          style="margin:0 auto 25px;width: 20%;font-family:var(--font-secondary); border-top: 2px solid rgba(107, 114, 128); border-bottom: 2px solid rgba(107, 114, 128);"
+        >
+          The Crew
+        </h2>
+        </hr>
 
         <div class="grid md:grid-cols-4 grid-cols-2">
           ${
@@ -37,7 +42,7 @@ export default class CastAndCrew extends HTMLElement {
               return `
                 <div class="text-center"">
                   <img
-                    class="block w-10 rounded-full text-center"
+                    class="block w-20 rounded-full text-center"
                     style="margin:0 auto"
                     src="${avatar}"
                     alt="Photo of ${name} (${title})"
@@ -45,7 +50,7 @@ export default class CastAndCrew extends HTMLElement {
                   <h3 class="font-bold text-center">
                     ${name}
                   </h3>
-                  <h4 class="text-center text-gray-500">
+                  <h4 class="uppercase text-center text-gray-500">
                     ${title}
                   </h3>
                 </div>
