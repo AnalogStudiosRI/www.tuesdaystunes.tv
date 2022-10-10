@@ -51,7 +51,7 @@ export default class UpcomingEvents extends HTMLElement {
 
     /* eslint-disable indent */
     this.innerHTML = `
-      <div>
+      <div class="upcoming-events">
         ${noEvents}
   
         ${
