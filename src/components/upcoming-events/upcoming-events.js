@@ -74,10 +74,10 @@ export default class UpcomingEvents extends HTMLElement {
                   return `
                     <div>
                       <h3 
-                        style="color:#efefef"
-                        class="text-center m-3"
+                        style="color:#efefef; margin: .5rem auto;"
+                        class="sm:w-1/2 md:w-1/3"
                       >
-                        <a 
+                        <a
                           href="${link}"
                           alt="${title}"
                         >
@@ -88,8 +88,9 @@ export default class UpcomingEvents extends HTMLElement {
                             ${date}
                           </span>
                           <span
+                            class="underline"
                             style="color:var(--color-secondary);"
-                            >
+                          >
                             ${title} @ ${hour}pm
                           </span>
                         </a>
