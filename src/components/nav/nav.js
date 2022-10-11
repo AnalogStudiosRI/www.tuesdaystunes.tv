@@ -33,7 +33,7 @@ export default class Nav extends HTMLElement {
           navLinks.map((link, index) => {
             const { name, url } = link;
             const isLast = index + 1 === navLinks.length;
-            const path = window !== undefined ? window.location.pathname : null;
+            const path = typeof window === 'undefined' ? null : window.location.pathname;
             const activePath = path === `/${name}`;
 
             return `
