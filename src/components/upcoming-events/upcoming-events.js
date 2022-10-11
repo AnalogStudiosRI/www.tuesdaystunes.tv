@@ -59,7 +59,7 @@ export default class UpcomingEvents extends HTMLElement {
             return `
               <div class="mb-6">
                 <h2 
-                  style="background-color:var(--color-secondary);color:#efefef"
+                  style="background-color:var(--color-secondary);color:var(--color-white);font-family:var(--font-secondary)"
                   class="text-center p-2 mb-4 text-3xl font-bold"
                 >
                   ${month}
@@ -74,7 +74,7 @@ export default class UpcomingEvents extends HTMLElement {
                   return `
                     <div>
                       <h3 
-                        style="color:#efefef; margin: .5rem auto;"
+                        style="color:var(--color-white); margin: .5rem auto;"
                         class="sm:w-1/2 md:w-1/3"
                       >
                         <a
@@ -88,7 +88,6 @@ export default class UpcomingEvents extends HTMLElement {
                             ${date}
                           </span>
                           <span
-                            class="underline"
                             style="color:var(--color-secondary);"
                           >
                             ${title} @ ${hour}pm
