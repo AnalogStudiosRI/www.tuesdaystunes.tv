@@ -30,7 +30,7 @@ export default class Footer extends HTMLElement {
                   title="Visit our ${name} page"
                 >
                   <img
-                    class="inline-block mx-5 my-2 w-6 h-6 text-gray-500 text-center"
+                    class="inline-block mx-5 my-2 w-6 h-6 text-center"
                     src="/assets/icons/${name.toLowerCase()}.svg"
                     alt="${name} Logo"
                   />
@@ -40,7 +40,7 @@ export default class Footer extends HTMLElement {
           }
         </div>
 
-        <p class="text-xs text-center text-gray-500">
+        <p class="text-xs text-center text-gray-tt">
           Copyright &copy${new Date().getFullYear()} Analog Studios / TuesdaysTunes.tv
         </p>
 

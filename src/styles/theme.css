@@ -13,6 +13,9 @@
   --color-primary: #fbe1a6;
   --color-secondary: #075154;
   --color-accent: #ef9d00;
+  --color-white: #efefef;
+  --color-black: #020202;
+  --color-gray: #72674c;
   --font-primary: 'Georgia';
   --font-secondary: 'Cooper Black';
 }
