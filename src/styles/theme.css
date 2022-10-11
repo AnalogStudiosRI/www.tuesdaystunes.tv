@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Cooper Black';
+  src: url('../assets/coop_bl.woff2') format('woff2');
+  font-display: swap;
+}
+
 :root,
 :host {
   --color-primary: #fbe1a6;
