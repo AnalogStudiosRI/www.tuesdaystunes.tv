@@ -11,7 +11,7 @@ import { Meta } from '@storybook/addon-docs';
     h2 {
       text-decoration: underline;
     }
-    
+
     .palette-box {
       width: var(--size);
       height: var(--size);
@@ -31,14 +31,26 @@ import { Meta } from '@storybook/addon-docs';
       background-color: var(--color-accent);
     }
 
+    .palette-white {
+      background-color: var(--color-white);
+    }
+
+    .palette-black {
+      background-color: var(--color-black);
+    }
+
+    .palette-gray {
+      background-color: var(--color-gray);
+    }
+
     .typography-primary {
       font-family: var(--font-primary);
-      color: var(--color-secondary); 
+      color: var(--color-secondary);
     }
 
     .typography-secondary {
       font-family: var(--font-secondary);
-      color: var(--color-secondary); 
+      color: var(--color-secondary);
     }
   `}
 </style>
@@ -66,6 +78,20 @@ The following theme colors available are:
 ### `--color-accent`
 
 <span class="palette-box palette-accent"></span>
+
+### `--color-white`
+
+<span class="palette-box palette-white"></span>
+
+### `--color-black`
+
+<span class="palette-box palette-black"></span>
+
+### `--color-gray` || `gray-tt`*
+
+<span class="palette-box palette-gray"></span>
+
+*custom tailwindcss class
 
 ## Typography
 
