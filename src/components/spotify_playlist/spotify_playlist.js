@@ -1,4 +1,4 @@
-export default class Spotify extends HTMLElement {
+export default class SpotifyPlaylist extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <div class="p-4 spotify-container">
@@ -17,4 +17,4 @@ export default class Spotify extends HTMLElement {
   }
 }
 
-customElements.define('tt-spotify', Spotify);
+customElements.define('tt-spotify-playlist', SpotifyPlaylist);
