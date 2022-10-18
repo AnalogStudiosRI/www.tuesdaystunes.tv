@@ -19,7 +19,7 @@ export default class UpcomingEvents extends HTMLElement {
     const events = (JSON.parse(this.getAttribute('events')) || [])
       .filter((event) => {
         // filter out old events except ones that are also in the current month
-        const { timestamp } = event;
+        const { startTime } = event;
         const now = new Date();
 
         // set to be the beginning of the current month
@@ -27,18 +27,18 @@ export default class UpcomingEvents extends HTMLElement {
         now.setFullYear(now.getFullYear());
         now.setMonth(now.getMonth());
 
-        const isInCurrentMonth = timestamp >= now.getTime();
+        const isInCurrentMonth = startTime >= now.getTime();
 
-        return event.timestamp >= now.getTime() || isInCurrentMonth;
+        return startTime >= now.getTime() || isInCurrentMonth;
       })
-      .sort((a, b) => a.timestamp < b.timestamp ? -1 : 1); // sort newest to latest
+      .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
       : '';
 
     // group events by month
     events.forEach((event) => {
-      const time = new Date(event.timestamp);
+      const time = new Date(event.startTime);
       const month = time.getMonth();
       const monthKey = MONTH_INDEX_MAPPER[month];
 
@@ -66,11 +66,12 @@ export default class UpcomingEvents extends HTMLElement {
                 </h2>
 
                 ${eventsByMonth[month].map((event) => {
-                  const { link, timestamp, title } = event;
-                  const time = new Date(timestamp);
+                  const { link, startTime, title } = event;
+                  const time = new Date(startTime);
+                  const formattedTitle = title.replace(/"/g, '\''); // TODO this is a bit of hack :/
                   const date = time.getDate();
                   const hour = time.getHours() - 12; // here we assume an 8pm (e.g. afternoon) start time
-          
+
                   return `
                     <div>
                       <h3 
@@ -79,7 +80,7 @@ export default class UpcomingEvents extends HTMLElement {
                       >
                         <a
                           href="${link}"
-                          alt="${title}"
+                          alt="${formattedTitle}"
                         >
                           <span
                             class="inline-block w-8 text-center"
@@ -90,7 +91,7 @@ export default class UpcomingEvents extends HTMLElement {
                           <span
                             style="color:var(--color-secondary);"
                           >
-                            ${title} @ ${hour}pm
+                            ${formattedTitle} @ ${hour}pm
                           </span>
                         </a>
                       </h3>
