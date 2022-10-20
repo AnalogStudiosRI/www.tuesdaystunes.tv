@@ -7,7 +7,16 @@ module.exports = {
       colors: {
         gray: {
           tt: '#72674c'
+        },
+        black: {
+          tt: '#020202'
+        },
+        orange: {
+          tt: '#ef9d00'
         }
+      },
+      fontFamily: {
+        title: ['"Cooper Black"']
       }
     }
   },
