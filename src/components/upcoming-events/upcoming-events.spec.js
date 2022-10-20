@@ -54,7 +54,7 @@ describe('Components/Upcoming Events', () => {
 
     it('should display the correct month heading', () => {
       const headings = events.querySelectorAll('h2');
-      const time = new Date(SINGLE_EVENT[0].timestamp);
+      const time = new Date(SINGLE_EVENT[0].startTime);
       const month = time.getMonth();
       const monthLabel = MONTH_INDEX_MAPPER[month];
 
@@ -62,9 +62,9 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should display the correct date details', () => {
-      const { title, timestamp } = SINGLE_EVENT[0];
+      const { title, startTime } = SINGLE_EVENT[0];
       const headings = events.querySelectorAll('h3');
-      const time = new Date(timestamp);
+      const time = new Date(startTime);
       const date = time.getDate();
       const hour = time.getHours() - 12;
       const display = `${date}${title}@${hour}pm`.replace(/ /g, '');
@@ -101,26 +101,26 @@ describe('Components/Upcoming Events', () => {
     it('should not display the no upcoming events text', () => {
       const headings = events.querySelectorAll('h2');
 
-      expect(headings.length).to.equal(2);
+      expect(headings.length).to.greaterThanOrEqual(2); // sometimes events will spread over three months
       expect(headings[0].textContent).to.not.equal('No Upcoming Events');
     });
 
     it('should display the correct month heading', () => {
       const headings = events.querySelectorAll('h2');
-      const eventsByMonth = {};
+      const eventsByMonth = [];
 
-      MULTIPLE_EVENTS.forEach((event) => {
-        const time = new Date(event.timestamp);
+      ORDERED_EVENTS.forEach((event) => {
+        const time = new Date(event.startTime);
         const month = time.getMonth();
         const monthKey = MONTH_INDEX_MAPPER[month];
   
-        if (!eventsByMonth[monthKey]) {
-          eventsByMonth[monthKey] = true;
+        if (!eventsByMonth.includes(monthKey)) {
+          eventsByMonth.push(monthKey);
         }
       });
-      
+
       headings.forEach((heading, idx) => {  
-        expect(heading.textContent).to.contain(Object.keys(eventsByMonth)[idx]);
+        expect(heading.textContent).to.contain(eventsByMonth[idx]);
       });
     });
 
@@ -128,8 +128,8 @@ describe('Components/Upcoming Events', () => {
       const headings = events.querySelectorAll('h3');
 
       headings.forEach((heading, idx) => {
-        const { title, timestamp } = ORDERED_EVENTS[idx];
-        const time = new Date(timestamp);
+        const { title, startTime } = ORDERED_EVENTS[idx];
+        const time = new Date(startTime);
         const date = time.getDate();
         const hour = time.getHours() - 12;
         const display = `${date}${title}@${hour}pm`.replace(/ /g, '');
@@ -146,6 +146,23 @@ describe('Components/Upcoming Events', () => {
   
       document.body.appendChild(events);
   
+      await events.updateComplete;
+    });
+
+    it('should only display the no upcoming events text', () => {
+      const headings = events.querySelectorAll('h2');
+
+      expect(headings.length).to.equal(1);
+      expect(headings[0].textContent).to.equal('No Upcoming Events');
+    });
+  });
+
+  describe('No events attribute', () => {
+    before(async () => {
+      events = document.createElement('tt-upcoming-events');
+
+      document.body.appendChild(events);
+
       await events.updateComplete;
     });
 
