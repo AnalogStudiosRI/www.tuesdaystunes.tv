@@ -1,5 +1,5 @@
 import { expect } from '@esm-bundle/chai';
-import './spotify_playlist.js';
+import './spotify-playlist.js';
 
 describe('Components/Spotify', () => {
   let spotify;
