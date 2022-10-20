@@ -1,10 +1,10 @@
 import '../../styles/theme.css';
-import './spotify_playlist.js';
+import './spotify-playlist.js';
 
 export default {
-  title: 'Components/SpotifyPlaylist'
+  title: 'Components/Spotify Playlist'
 };
 
 const Template = () => '<tt-spotify-playlist></tt-spotify-playlist>';
 
-export const Spotify = Template.bind({});
+export const Primary = Template.bind({});
