@@ -52,6 +52,12 @@ export default class UpcomingEvents extends HTMLElement {
     /* eslint-disable indent */
     this.innerHTML = `
       <div class="upcoming-events">
+        <h2 
+          class="text-3xl text-center font-extrabold"
+          style="font-family:var(--font-secondary);border-bottom: 2px solid rgba(107, 114, 128);"
+        >
+          Episode Schedule
+        </h2>
         ${noEvents}
   
         ${
@@ -76,7 +82,7 @@ export default class UpcomingEvents extends HTMLElement {
                     <div>
                       <h3 
                         style="color:var(--color-white); margin: .5rem auto;"
-                        class="sm:w-1/2 md:w-1/3"
+                        class="w-11/12 sm:w-10/12"
                       >
                         <a
                           href="${link}"

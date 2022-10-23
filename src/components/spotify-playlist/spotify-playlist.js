@@ -1,6 +1,13 @@
 export default class SpotifyPlaylist extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
+      <h2
+        class="text-3xl text-center font-extrabold"
+        style="font-family:var(--font-secondary);border-bottom: 2px solid rgba(107, 114, 128);"
+      >
+        Spotify Playlist
+      </h2>
+
       <div class="p-4 spotify-container">
         <iframe
           style="border-radius:12px"
