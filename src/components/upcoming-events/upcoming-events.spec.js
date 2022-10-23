@@ -33,6 +33,13 @@ describe('Components/Upcoming Events', () => {
       expect(events).not.equal(undefined);
       expect(events.querySelectorAll('div.upcoming-events').length).equal(1);
     });
+
+    it('should display the top level heading text', () => {
+      const headings = events.querySelectorAll('h2');
+
+      expect(headings.length).to.equal(2); // first one is the top level heading
+      expect(headings[0].textContent).to.contain('Episode Schedule');
+    });
   });
 
   describe('Single event', () => {
@@ -48,12 +55,12 @@ describe('Components/Upcoming Events', () => {
     it('should not display the no upcoming events text', () => {
       const headings = events.querySelectorAll('h2');
 
-      expect(headings.length).to.equal(1);
+      expect(headings.length).to.equal(1); // first one is the top level heading
       expect(headings[0].textContent).to.not.equal('No Upcoming Events');
     });
 
     it('should display the correct month heading', () => {
-      const headings = events.querySelectorAll('h2');
+      const headings = events.querySelectorAll('h3');
       const time = new Date(SINGLE_EVENT[0].startTime);
       const month = time.getMonth();
       const monthLabel = MONTH_INDEX_MAPPER[month];
@@ -63,7 +70,7 @@ describe('Components/Upcoming Events', () => {
 
     it('should display the correct date details', () => {
       const { title, startTime } = SINGLE_EVENT[0];
-      const headings = events.querySelectorAll('h3');
+      const headings = events.querySelectorAll('h4');
       const time = new Date(startTime);
       const date = time.getDate();
       const hour = time.getHours() - 12;
@@ -99,14 +106,14 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should not display the no upcoming events text', () => {
-      const headings = events.querySelectorAll('h2');
+      const headings = events.querySelectorAll('h3');
 
       expect(headings.length).to.greaterThanOrEqual(2); // sometimes events will spread over three months
       expect(headings[0].textContent).to.not.equal('No Upcoming Events');
     });
 
     it('should display the correct month heading', () => {
-      const headings = events.querySelectorAll('h2');
+      const headings = events.querySelectorAll('h3');
       const eventsByMonth = [];
 
       ORDERED_EVENTS.forEach((event) => {
@@ -125,7 +132,7 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should display the correct date details', () => {
-      const headings = events.querySelectorAll('h3');
+      const headings = events.querySelectorAll('h4');
 
       headings.forEach((heading, idx) => {
         const { title, startTime } = ORDERED_EVENTS[idx];
@@ -152,8 +159,8 @@ describe('Components/Upcoming Events', () => {
     it('should only display the no upcoming events text', () => {
       const headings = events.querySelectorAll('h2');
 
-      expect(headings.length).to.equal(1);
-      expect(headings[0].textContent).to.equal('No Upcoming Events');
+      expect(headings.length).to.equal(2); // first one is the top level heading
+      expect(headings[1].textContent).to.equal('No Upcoming Events');
     });
   });
 
@@ -169,8 +176,8 @@ describe('Components/Upcoming Events', () => {
     it('should only display the no upcoming events text', () => {
       const headings = events.querySelectorAll('h2');
 
-      expect(headings.length).to.equal(1);
-      expect(headings[0].textContent).to.equal('No Upcoming Events');
+      expect(headings.length).to.equal(2); // first one is the top level heading
+      expect(headings[1].textContent).to.equal('No Upcoming Events');
     });
   });
 

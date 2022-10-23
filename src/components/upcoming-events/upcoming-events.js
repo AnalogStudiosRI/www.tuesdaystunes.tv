@@ -64,7 +64,7 @@ export default class UpcomingEvents extends HTMLElement {
           Object.keys(eventsByMonth).map((month) => {
             return `
               <div class="mb-6">
-                <h2 
+                <h3
                   style="background-color:var(--color-secondary);color:var(--color-white);font-family:var(--font-secondary)"
                   class="text-center p-2 mb-4 text-3xl font-bold"
                 >
@@ -80,7 +80,7 @@ export default class UpcomingEvents extends HTMLElement {
 
                   return `
                     <div>
-                      <h3 
+                      <h4
                         style="color:var(--color-white); margin: .5rem auto;"
                         class="w-11/12 sm:w-10/12"
                       >
@@ -100,7 +100,7 @@ export default class UpcomingEvents extends HTMLElement {
                             ${formattedTitle} @ ${hour}pm
                           </span>
                         </a>
-                      </h3>
+                      </h4>
                     </div>
                   `;
                 }).join('')}
