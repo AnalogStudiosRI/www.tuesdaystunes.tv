@@ -2,7 +2,7 @@ export default class Header extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <header
-        style="min-height:218px"
+        style="min-height:200px"
       >
         <a
           class="flex justify-center p-2"
