@@ -24,16 +24,13 @@ export default class CastAndCrew extends HTMLElement {
     const { profiles } = this;
 
     this.innerHTML = `
+      <h2
+        class="text-3xl text-center font-extrabold"
+        style="font-family:var(--font-secondary);border-bottom: 2px solid rgba(107, 114, 128);"
+      >
+        The Crew
+      </h2>
       <div class="profiles">
-        </hr>
-        <h2 
-          class="text-3xl text-center font-extrabold"
-          style="margin:0 auto 25px;width: 20%;font-family:var(--font-secondary); border-top: 2px solid rgba(107, 114, 128); border-bottom: 2px solid rgba(107, 114, 128);"
-        >
-          The Crew
-        </h2>
-        </hr>
-
         <div class="grid md:grid-cols-4 grid-cols-2">
           ${
             profiles.map((person) => {

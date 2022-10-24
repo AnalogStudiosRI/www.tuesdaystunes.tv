@@ -52,13 +52,19 @@ export default class UpcomingEvents extends HTMLElement {
     /* eslint-disable indent */
     this.innerHTML = `
       <div class="upcoming-events">
+        <h2 
+          class="text-3xl text-center font-extrabold"
+          style="font-family:var(--font-secondary);border-bottom: 2px solid rgba(107, 114, 128);"
+        >
+          Episode Schedule
+        </h2>
         ${noEvents}
   
         ${
           Object.keys(eventsByMonth).map((month) => {
             return `
               <div class="mb-6">
-                <h2 
+                <h3
                   style="background-color:var(--color-secondary);color:var(--color-white);font-family:var(--font-secondary)"
                   class="text-center p-2 mb-4 text-3xl font-bold"
                 >
@@ -74,9 +80,9 @@ export default class UpcomingEvents extends HTMLElement {
 
                   return `
                     <div>
-                      <h3 
+                      <h4
                         style="color:var(--color-white); margin: .5rem auto;"
-                        class="sm:w-1/2 md:w-1/3"
+                        class="w-11/12 sm:w-10/12"
                       >
                         <a
                           href="${link}"
@@ -94,7 +100,7 @@ export default class UpcomingEvents extends HTMLElement {
                             ${formattedTitle} @ ${hour}pm
                           </span>
                         </a>
-                      </h3>
+                      </h4>
                     </div>
                   `;
                 }).join('')}
