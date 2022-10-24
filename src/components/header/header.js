@@ -2,6 +2,7 @@ export default class Header extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <header
+        class="pt-10"
         style="min-height:200px"
       >
         <a
