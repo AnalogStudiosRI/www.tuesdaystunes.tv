@@ -42,6 +42,8 @@ export default class CastAndCrew extends HTMLElement {
                     class="block w-20 rounded-full text-center m-0 ml-auto mr-auto"
                     src="${avatar}"
                     alt="Photo of ${name} (${title})"
+                    height="100"
+                    width="100"
                   />
                   <h3 class="font-bold text-center">
                     ${name}

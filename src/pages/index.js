@@ -29,6 +29,8 @@ export default class Home extends HTMLElement {
               src="/assets/tunesy.webp"
               alt="Picture of Tunesy"
               class="w-2/5 block m-0 ml-auto mr-auto"
+              height="300"
+              width="285"
             />
 
             <tt-upcoming-events

@@ -11,6 +11,8 @@ export default class Header extends HTMLElement {
             class="w-full max-w-xs header-logo"
             src="/assets/tuesdays-tunes.webp"
             alt="Tuesdays Tunes"
+            height="300"
+            width="218"
           />
         </a>
       </header>
