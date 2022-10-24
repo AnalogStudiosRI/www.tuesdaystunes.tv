@@ -10,6 +10,7 @@ export default class Home extends HTMLElement {
     // https://github.com/node-fetch/node-fetch/issues/189#issuecomment-412213145
     const events = (await fetch('https://www.analogstudios.net/api/v2/events')
       .then(resp => resp.json()))
+      .filter(event => event.tags.includes('tt'))
       .map(event => {
         return {
           ...event,
