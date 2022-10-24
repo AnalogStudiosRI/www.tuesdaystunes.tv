@@ -26,7 +26,7 @@ export default class Home extends HTMLElement {
         <div id="greeting" class="grid grid-cols-6">
           <div class="col-span-6 md:col-span-3">
             <img
-              src="/assets/tuesdays-tunes.webp"
+              src="/assets/tunesy.webp"
               alt="Picture of Tunesy"
               class="w-2/5 block m-0 ml-auto mr-auto"
             />
