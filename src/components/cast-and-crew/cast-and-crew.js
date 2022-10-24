@@ -4,19 +4,19 @@ export default class CastAndCrew extends HTMLElement {
     this.profiles = [{
       name: 'Dave Flamand',
       title: 'Host',
-      avatar: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' // eslint-disable-line max-len
+      avatar: '/assets/images/avatar-dave.webp'
     }, {
       name: 'Owen Buckley',
       title: 'Producer',
-      avatar: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' // eslint-disable-line max-len
+      avatar: '/assets/images/avatar-owen.webp'
     }, {
       name: 'Erika Flamand',
       title: 'Designer',
-      avatar: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' // eslint-disable-line max-len
+      avatar: '/assets/images/avatar-erika.webp'
     }, {
       name: 'Tunesy',
       title: 'Mascot',
-      avatar: 'https://media.istockphoto.com/vectors/user-icon-flat-isolated-on-white-background-user-symbol-vector-vector-id1300845620?k=20&m=1300845620&s=612x612&w=0&h=f4XTZDAv7NPuZbG0habSpU0sNgECM0X7nbKzTUta3n8=' // eslint-disable-line max-len
+      avatar: '/assets/images/avatar-tunesy.webp'
     }];
   }
 
@@ -39,10 +39,11 @@ export default class CastAndCrew extends HTMLElement {
               return `
                 <div class="text-center">
                   <img
-                    class="block w-20 rounded-full text-center"
-                    style="margin:0 auto"
+                    class="block w-20 rounded-full text-center m-0 ml-auto mr-auto"
                     src="${avatar}"
                     alt="Photo of ${name} (${title})"
+                    height="100"
+                    width="100"
                   />
                   <h3 class="font-bold text-center">
                     ${name}
