@@ -1,4 +1,5 @@
 *.log
+*.DS_Store
 .greenwood/
 .vscode/
 node_modules/
