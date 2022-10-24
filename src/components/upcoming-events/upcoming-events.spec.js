@@ -17,6 +17,16 @@ const MONTH_INDEX_MAPPER = [
   'December'
 ];
 
+function formatEventText(event) {
+  const { title, startTime } = event;
+  const time = new Date(startTime);
+  const date = time.getDate();
+  const hours = time.getHours();
+  const hour = hours > 12 ? hours - 12 : hours;
+
+  return `${date}${title}@${hour}pm`.replace(/ /g, '');
+}
+
 describe('Components/Upcoming Events', () => {
   let events;
 
@@ -69,12 +79,9 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should display the correct date details', () => {
-      const { title, startTime } = SINGLE_EVENT[0];
+      const event = SINGLE_EVENT[0];
       const headings = events.querySelectorAll('h4');
-      const time = new Date(startTime);
-      const date = time.getDate();
-      const hour = time.getHours() - 12;
-      const display = `${date}${title}@${hour}pm`.replace(/ /g, '');
+      const display = formatEventText(event);
 
       expect(headings[0].textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
     });
@@ -135,11 +142,8 @@ describe('Components/Upcoming Events', () => {
       const headings = events.querySelectorAll('h4');
 
       headings.forEach((heading, idx) => {
-        const { title, startTime } = ORDERED_EVENTS[idx];
-        const time = new Date(startTime);
-        const date = time.getDate();
-        const hour = time.getHours() - 12;
-        const display = `${date}${title}@${hour}pm`.replace(/ /g, '');
+        const event = ORDERED_EVENTS[idx];
+        const display = formatEventText(event);
 
         expect(heading.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
       });
