@@ -74,9 +74,10 @@ export default class UpcomingEvents extends HTMLElement {
                 ${eventsByMonth[month].map((event) => {
                   const { link, startTime, title } = event;
                   const time = new Date(startTime);
+                  const hours = time.getHours();
                   const formattedTitle = title.replace(/"/g, '\''); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
                   const date = time.getDate();
-                  const hour = time.getHours() - 12; // here we assume an 8pm (e.g. afternoon) start time
+                  const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
 
                   return `
                     <div>
