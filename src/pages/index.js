@@ -58,7 +58,7 @@ export default class Home extends HTMLElement {
               class="text-right mr-6"
               style="font-family:var(--font-secondary);"
             >
-              - Tunesy
+              &#8211; Tunesy
             </p>
           </div>
         </div>
