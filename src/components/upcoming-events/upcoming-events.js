@@ -72,7 +72,7 @@ export default class UpcomingEvents extends HTMLElement {
                 </h2>
 
                 ${eventsByMonth[month].map((event) => {
-                  const { link, startTime, title } = event;
+                  const { startTime, title } = event;
                   const time = new Date(startTime);
                   const hours = time.getHours();
                   const formattedTitle = title.replace(/"/g, '\''); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
@@ -85,22 +85,17 @@ export default class UpcomingEvents extends HTMLElement {
                         style="color:var(--color-white); margin: .5rem auto;"
                         class="w-11/12 sm:w-10/12"
                       >
-                        <a
-                          href="${link}"
-                          alt="${formattedTitle}"
+                        <span
+                          class="inline-block w-8 text-center"
+                          style="background-color:var(--color-accent);"
                         >
-                          <span
-                            class="inline-block w-8 text-center"
-                            style="background-color:var(--color-accent);"
-                          >
-                            ${date}
-                          </span>
-                          <span
-                            style="color:var(--color-secondary);"
-                          >
-                            ${formattedTitle} @ ${hour}pm
-                          </span>
-                        </a>
+                          ${date}
+                        </span>
+                        <span
+                          style="color:var(--color-secondary);"
+                        >
+                          ${formattedTitle} @ ${hour}pm
+                        </span>
                       </h4>
                     </div>
                   `;
