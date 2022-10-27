@@ -5,7 +5,9 @@ body {
   background-color: var(--color-primary);
   color: var(--color-secondary);
   font-family: var(--font-primary);
+  scrollbar-color: var(--color-accent) var(--color-accent);
 }
+
 body::-webkit-scrollbar {
   width: .8em;
   height: 1em;
