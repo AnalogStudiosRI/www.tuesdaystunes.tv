@@ -10,7 +10,7 @@ export default class Header extends HTMLElement {
           title="Tuesdays Tunes Home page"
         >
           <img
-            class="w-full max-w-xs header-logo"
+            class="w-full h-full max-w-xs header-logo"
             src="/assets/tuesdays-tunes.webp"
             alt="Tuesdays Tunes"
             height="200"
