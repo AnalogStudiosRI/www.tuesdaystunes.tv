@@ -22,4 +22,4 @@ export default class Header extends HTMLElement {
   }
 }
 
-customElements.define("tt-header", Header);
+customElements.define('tt-header', Header);
