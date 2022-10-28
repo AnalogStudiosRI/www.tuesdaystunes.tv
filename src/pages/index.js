@@ -44,7 +44,8 @@ export default class Home extends HTMLElement {
               class="font-extrabold uppercase text-3xl lg:text-5xl"
               style="font-family:var(--font-secondary)"
             >
-              Welcome!<br/> Tune into our live stream every other Tuesday.
+              Good Evening Folks!<br/>
+              Welcome to Tuesday&apos;s Tunes!!
             </h1>
 
             <p
