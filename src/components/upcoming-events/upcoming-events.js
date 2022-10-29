@@ -101,14 +101,14 @@ export default class UpcomingEvents extends HTMLElement {
                     </div>
                   `;
                   })
-                  .join("")}
+                  .join('')}
               </div>
             `;
           })
-          .join("")}      
+          .join('')}      
       </div>
     `;
   }
 }
 
-customElements.define("tt-upcoming-events", UpcomingEvents);
+customElements.define(`tt-upcoming-events`, UpcomingEvents);
