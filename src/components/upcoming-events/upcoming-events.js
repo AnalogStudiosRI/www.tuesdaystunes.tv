@@ -1,22 +1,22 @@
 const MONTH_INDEX_MAPPER = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December'
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
 ];
 
 export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
     const eventsByMonth = {};
-    const events = (JSON.parse(this.getAttribute('events')) || [])
+    const events = (JSON.parse(this.getAttribute("events")) || [])
       .filter((event) => {
         // filter out old events except ones that are also in the current month
         const { startTime } = event;
@@ -31,10 +31,11 @@ export default class UpcomingEvents extends HTMLElement {
 
         return startTime >= now.getTime() || isInCurrentMonth;
       })
-      .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
-    const noEvents = events.length === 0
-      ? '<h2 class="text-center">No Upcoming Events</h2>'
-      : '';
+      .sort((a, b) => (a.startTime < b.startTime ? -1 : 1)); // sort newest to latest
+    const noEvents =
+      events.length === 0
+        ? '<h2 class="text-center">No Upcoming Events</h2>'
+        : "";
 
     // group events by month
     events.forEach((event) => {
@@ -60,8 +61,8 @@ export default class UpcomingEvents extends HTMLElement {
         </h2>
         ${noEvents}
   
-        ${
-          Object.keys(eventsByMonth).map((month) => {
+        ${Object.keys(eventsByMonth)
+          .map((month) => {
             return `
               <div class="mb-6">
                 <h3
@@ -71,22 +72,23 @@ export default class UpcomingEvents extends HTMLElement {
                   ${month}
                 </h2>
 
-                ${eventsByMonth[month].map((event) => {
-                  const { startTime, title } = event;
-                  const time = new Date(startTime);
-                  const hours = time.getHours();
-                  const formattedTitle = title.replace(/"/g, '\''); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
-                  const date = time.getDate();
-                  const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
+                ${eventsByMonth[month]
+                  .map((event) => {
+                    const { startTime, title } = event;
+                    const time = new Date(startTime);
+                    const hours = time.getHours();
+                    const formattedTitle = title.replace(/"/g, "'"); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
+                    const date = time.getDate();
+                    const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
 
-                  return `
+                    return `
                     <div>
                       <h4
                         style="color:var(--color-white); margin: .5rem auto;"
-                        class="w-11/12 sm:w-10/12"
+                        class="w-11/12 sm:w-10/12 flex"
                       >
                         <span
-                          class="inline-block w-8 text-center"
+                          class="inline-block w-8 h-[1.6rem] text-center mr-2"
                           style="background-color:var(--color-accent);"
                         >
                           ${date}
@@ -99,14 +101,15 @@ export default class UpcomingEvents extends HTMLElement {
                       </h4>
                     </div>
                   `;
-                }).join('')}
+                  })
+                  .join("")}
               </div>
             `;
-          }).join('')
-        }      
+          })
+          .join("")}      
       </div>
     `;
   }
 }
 
-customElements.define('tt-upcoming-events', UpcomingEvents);
+customElements.define("tt-upcoming-events", UpcomingEvents);
