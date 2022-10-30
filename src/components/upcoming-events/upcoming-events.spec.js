@@ -148,6 +148,23 @@ describe('Components/Upcoming Events', () => {
         expect(heading.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
       });
     });
+
+    it('should display the correct link details', () => {
+      const links = events.querySelectorAll('a');
+
+      links.forEach((link, idx) => {
+        const event = ORDERED_EVENTS[idx];
+        const { title, startTime } = event;
+        const time = new Date(startTime);
+        const hours = time.getHours();
+        const hour = hours > 12 ? hours - 12 : hours;
+        const display = `${title}@${hour}pm`.replace(/ /g, '');
+
+        expect(link.href).to.equal(event.link);
+        expect(link.title).to.equal(title);
+        expect(link.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
+      });
+    });
   });
 
   describe('No events', () => {
