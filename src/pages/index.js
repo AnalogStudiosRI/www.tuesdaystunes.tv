@@ -49,16 +49,15 @@ export default class Home extends HTMLElement {
           </p>
         </div>
 
-        <div id="greeting" class="p-8">
+        <div id="greeting" class="p-8 mb-6">
           <div class="col-span-6 md:col-span-3">
             <img
               src="/assets/tunesy.webp"
               alt="Picture of Tunesy"
-              class="w-2/5 block m-0 ml-auto mr-auto"
+              class="w-2/5 block m-0 mb-12 ml-auto mr-auto"
               height="300"
               width="285"
             />
-            <br /><br /><br />
             <tt-upcoming-events
               events='${JSON.stringify(events).replace(/'/g, '\\"')}'
               class="block m-0 ml-auto mr-auto"
@@ -66,19 +65,11 @@ export default class Home extends HTMLElement {
           </div>
         </div>
 
-        <br /><br /><br />
+        <tt-youtube-playlist class="block mb-12"></tt-youtube-playlist>
 
-        <tt-youtube-playlist></tt-youtube-playlist>
+        <tt-spotify-playlist class="block mb-12"></tt-spotify-playlist>
 
-        <br /><br /><br />
-
-        <tt-spotify-playlist></tt-spotify-playlist>
-
-        <br /><br /><br />
-
-        <tt-cast-crew></tt-cast-crew>
-
-        <br /><br /><br />
+        <tt-cast-crew class="block mb-6"></tt-cast-crew>
 
       </div>
     `;
