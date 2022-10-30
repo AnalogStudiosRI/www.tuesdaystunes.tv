@@ -32,8 +32,7 @@ export default class UpcomingEvents extends HTMLElement {
         return startTime >= now.getTime() || isInCurrentMonth;
       })
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
-    const noEvents =
-      events.length === 0
+    const noEvents = events.length === 0
         ? '<h2 class="text-center">No Upcoming Events</h2>'
         : '';
 
@@ -61,8 +60,7 @@ export default class UpcomingEvents extends HTMLElement {
         </h2>
         ${noEvents}
   
-        ${Object.keys(eventsByMonth)
-          .map((month) => {
+        ${Object.keys(eventsByMonth).map((month) => {
             return `
               <div class="mb-6">
                 <h3
@@ -72,8 +70,7 @@ export default class UpcomingEvents extends HTMLElement {
                   ${month}
                 </h2>
 
-                ${eventsByMonth[month]
-                  .map((event) => {
+                ${eventsByMonth[month].map((event) => {
                     const { startTime, title } = event;
                     const time = new Date(startTime);
                     const hours = time.getHours();
@@ -101,12 +98,10 @@ export default class UpcomingEvents extends HTMLElement {
                       </h4>
                     </div>
                   `;
-                  })
-                  .join('')}
+                  }).join('')}
               </div>
             `;
-          })
-          .join('')}      
+          }).join('')}      
       </div>
     `;
   }
