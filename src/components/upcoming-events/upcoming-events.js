@@ -10,7 +10,7 @@ const MONTH_INDEX_MAPPER = [
   'September',
   'October',
   'November',
-  'December',
+  'December'
 ];
 
 export default class UpcomingEvents extends HTMLElement {
@@ -31,8 +31,9 @@ export default class UpcomingEvents extends HTMLElement {
 
         return startTime >= now.getTime() || isInCurrentMonth;
       })
-      .sort((a, b) => (a.startTime < b.startTime ? -1 : 1)); // sort newest to latest
-    const noEvents = events.length === 0
+      .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
+    const noEvents =
+      events.length === 0
         ? '<h2 class="text-center">No Upcoming Events</h2>'
         : '';
 
@@ -76,7 +77,7 @@ export default class UpcomingEvents extends HTMLElement {
                     const { startTime, title } = event;
                     const time = new Date(startTime);
                     const hours = time.getHours();
-                    const formattedTitle = title.replace(/"/g, '\''); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
+                    const formattedTitle = title.replace(/"/g, "'"); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
                     const date = time.getDate();
                     const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
 
@@ -111,4 +112,4 @@ export default class UpcomingEvents extends HTMLElement {
   }
 }
 
-customElements.define(`tt-upcoming-events`, UpcomingEvents);
+customElements.define('tt-upcoming-events', UpcomingEvents);
