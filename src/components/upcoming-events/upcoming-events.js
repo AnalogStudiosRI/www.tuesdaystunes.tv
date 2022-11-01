@@ -32,9 +32,7 @@ export default class UpcomingEvents extends HTMLElement {
         return startTime >= now.getTime() || isInCurrentMonth;
       })
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
-    const noEvents = events.length === 0
-        ? '<h2 class="text-center">No Upcoming Events</h2>'
-        : '';
+    const noEvents = events.length === 0 ? '<h2 class="text-center">No Upcoming Events</h2>' : '';
 
     // group events by month
     events.forEach((event) => {
