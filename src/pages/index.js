@@ -20,7 +20,7 @@ export default class Home extends HTMLElement {
 
     this.innerHTML = `
       <div
-        class="bg-white rounded-lg drop-shadow-lg p-6 mb-4 mt-2"
+        class="bg-white rounded-lg drop-shadow-lg lg:p-8 m-auto mt-4 md:p-1"
       >
 
         <div id="greeting" class="grid grid-cols-6">
@@ -32,13 +32,11 @@ export default class Home extends HTMLElement {
               height="300"
               width="285"
             />
-
             <tt-upcoming-events
               events='${JSON.stringify(events).replace(/'/g, '\\"')}'
               class="block w-11/12 m-0 ml-auto mr-auto"
             ></tt-upcoming-events>
           </div>
-
           <div class="col-span-6 md:col-span-3 p-2">
             <h1
               class="font-extrabold uppercase text-3xl lg:text-5xl"
@@ -47,7 +45,6 @@ export default class Home extends HTMLElement {
               Good Evening Folks!<br/>
               Welcome to Tuesday&apos;s Tunes!!
             </h1>
-
             <p
               class="mt-2 mb-2"
               style="font-family:var(--font-secondary);"
@@ -56,7 +53,6 @@ export default class Home extends HTMLElement {
               We are looking forward to seeing you at our next live stream on Facebook.  Stay tuned
               for any further details!
             </p>
-
             <p
               class="text-right mr-6"
               style="font-family:var(--font-secondary);"
@@ -66,11 +62,11 @@ export default class Home extends HTMLElement {
           </div>
         </div>
 
-        <tt-youtube-playlist></tt-youtube-playlist>
+        <tt-youtube-playlist class="block mb-12"></tt-youtube-playlist>
 
-        <tt-spotify-playlist></tt-spotify-playlist>
+        <tt-spotify-playlist class="block mb-12"></tt-spotify-playlist>
 
-        <tt-cast-crew></tt-cast-crew>
+        <tt-cast-crew class="block mb-6"></tt-cast-crew>
 
       </div>
     `;

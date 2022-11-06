@@ -25,7 +25,7 @@ export default class CastAndCrew extends HTMLElement {
 
     this.innerHTML = `
       <h2
-        class="text-3xl text-center font-extrabold"
+        class="text-3xl text-center font-extrabold mb-4"
         style="font-family:var(--font-secondary);border-bottom: 2px solid rgba(107, 114, 128);"
       >
         The Crew
