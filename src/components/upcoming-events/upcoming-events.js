@@ -60,47 +60,48 @@ export default class UpcomingEvents extends HTMLElement {
         </h2>
         ${noEvents}
 
-        ${Object.keys(eventsByMonth).map((month) => {
-          return `
-            <div class="mb-6">
-              <h3
-                style="background-color:var(--color-secondary);color:var(--color-white);font-family:var(--font-secondary)"
-                class="text-center p-2 mb-4 text-3xl font-bold"
-              >
-                ${month}
-              </h2>
+        ${
+          Object.keys(eventsByMonth).map((month) => {
+            return `
+              <div class="mb-6">
+                <h3
+                  style="background-color:var(--color-secondary);color:var(--color-white);font-family:var(--font-secondary)"
+                  class="text-center p-2 mb-4 text-3xl font-bold"
+                >
+                  ${month}
+                </h3>
 
-              ${eventsByMonth[month].map((event) => {
-                const { startTime, title } = event;
-                const time = new Date(startTime);
-                const hours = time.getHours();
-                const formattedTitle = title.replace(/"/g, "'"); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
-                const date = time.getDate();
-                const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
+                ${eventsByMonth[month].map((event) => {
+                  const { startTime, title } = event;
+                  const time = new Date(startTime);
+                  const hours = time.getHours();
+                  const formattedTitle = title.replace(/"/g, "'"); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
+                  const date = time.getDate();
+                  const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
 
-                return `
-                  <div>
-                    <h4
-                      style="color:var(--color-white); margin: .5rem auto;"
-                      class="w-11/12 sm:w-10/12 flex"
-                    >
-                      <span
-                        class="inline-block w-8 h-[1.6rem] text-center mr-2"
-                        style="background-color:var(--color-accent);"
+                  return `
+                    <div>
+                      <h4
+                        style="color:var(--color-white); margin: .5rem auto;"
+                        class="w-11/12 sm:w-10/12 flex"
                       >
-                        ${date}
-                      </span>
-                      <span
-                        style="color:var(--color-secondary);"
-                      >
-                        ${formattedTitle} @ ${hour}pm
-                      </span>
-                    </h4>
-                  </div>
-                `;
-              }).join('')}
-            </div>
-          `;
+                        <span
+                          class="inline-block w-8 h-[1.6rem] text-center mr-2"
+                          style="background-color:var(--color-accent);"
+                        >
+                          ${date}
+                        </span>
+                        <span
+                          style="color:var(--color-secondary);"
+                        >
+                          ${formattedTitle} @ ${hour}pm
+                        </span>
+                      </h4>
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            `;
         }).join('')}
       </div>
     `;
