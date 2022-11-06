@@ -1,8 +1,7 @@
 const SINGLE_EVENT = [{
   title: 'Tuesday\'s Tunes Season 3 - Premier!',
   startTime: Date.now() + 300000,
-  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite.',
-  link: 'http://www.facebook.com/'
+  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite.'
 }];
 
 // includes testing for multiple months, events list "overflow", and out of order events
@@ -12,7 +11,8 @@ const MULTIPLE_EVENTS = [{
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite.',
   link: 'http://www.facebook.com/'
 }, {
-  ...SINGLE_EVENT[0]
+  ...SINGLE_EVENT[0],
+  link: 'http://www.facebook.com/'
 }, {
   title: 'Tuesday\'s Tunes Season 3 - Episode 2',
   startTime: SINGLE_EVENT[0].startTime + (86400000 * 30),

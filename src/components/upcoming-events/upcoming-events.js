@@ -72,13 +72,16 @@ export default class UpcomingEvents extends HTMLElement {
                 </h3>
 
                 ${eventsByMonth[month].map((event) => {
-                  const { startTime, title } = event;
+                  const { startTime, title, link } = event;
                   const time = new Date(startTime);
                   const hours = time.getHours();
-                  const formattedTitle = title.replace(/"/g, '\''); // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
                   const date = time.getDate();
                   const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
-
+                  const formattedTitle = `${title.replace(/"/g, '\'')} @ ${hour}pm`; // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
+                  const eventLink = link
+                    ? `<a title="${title}" href="${link}" class="underline">${formattedTitle}</a>`
+                    : formattedTitle;
+                    
                   return `
                     <div>
                       <h4
@@ -94,7 +97,7 @@ export default class UpcomingEvents extends HTMLElement {
                         <span
                           style="color:var(--color-secondary);"
                         >
-                          ${formattedTitle} @ ${hour}pm
+                          ${eventLink}
                         </span>
                       </h4>
                     </div>
