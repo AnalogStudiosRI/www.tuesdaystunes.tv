@@ -21,7 +21,7 @@ See _package.json_ for all options:
 - `yarn test:tdd` - Run tests in watch mode
 - `yarn story:dev` - Run Storybook for development
 
-> _Hosted Storybook docs available through [GitHub Pages](http://analogstudiosri.github.io/www.tuesdaystunes.tv)_
+> _Hosted Storybook docs available through [GitHub Pages](http://analogstudiosri.github.io/www.tuesdaystunes.tv).  (Make sure to leave off the trailing slash!)_
 
 ## Release Management
 

@@ -28,7 +28,7 @@ export default class Home extends HTMLElement {
             <img
               src="/assets/tunesy.webp"
               alt="Picture of Tunesy"
-              class="w-2/5 block m-0 ml-auto mr-auto"
+              class="w-2/5 block ml-auto mr-auto mt-4 lg:mt-0"
               height="300"
               width="285"
             />
