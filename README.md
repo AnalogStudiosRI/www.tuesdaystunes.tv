@@ -21,6 +21,8 @@ See _package.json_ for all options:
 - `yarn test:tdd` - Run tests in watch mode
 - `yarn story:dev` - Run Storybook for development
 
+> _Hosted Storybook docs available through [GitHub Pages](http://analogstudiosri.github.io/www.tuesdaystunes.tv)_
+
 ## Release Management
 
 The project is hosted by [Netlify](https://www.netlify.com/) and is setup to deploy continuously on every merge to the mainline branch in GitHub.  [GitHub Actions](https://github.com/features/actions) are used for continuous integration on PRs and Netlify will deploy preview builds for all PRs.
