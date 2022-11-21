@@ -6,11 +6,8 @@ import '../components/youtube-playlist/youtube-playlist.js';
 
 export default class Home extends HTMLElement {
   async connectedCallback() {
-    // TODO figure out how to filter for events (none of the suggestions seem to work?)
-    // https://github.com/node-fetch/node-fetch/issues/189#issuecomment-412213145
-    const events = (await fetch('https://www.analogstudios.net/api/v2/events')
+    const events = (await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt')
       .then(resp => resp.json()))
-      .filter(event => event.tags.includes('tt'))
       .map(event => {
         return {
           ...event,
