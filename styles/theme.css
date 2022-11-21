@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Cooper Black';
+  src: url('../assets/fonts/coop-bl.woff2') format('woff2');
+  font-display: swap;
+}
+
+:root,
+:host {
+  --color-primary: #fbe1a6;
+  --color-secondary: #075154;
+  --color-accent: #ef9d00;
+  --color-white: #efefef;
+  --color-black: #020202;
+  --color-gray: #72674c;
+  --font-primary: 'Georgia';
+  --font-secondary: 'Cooper Black';
+}
