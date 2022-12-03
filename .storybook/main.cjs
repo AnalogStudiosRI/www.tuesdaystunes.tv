@@ -12,8 +12,9 @@ module.exports = {
     '@storybook/addon-postcss'
   ],
   framework: '@storybook/web-components',
-  // set publicPath (e.g. `<base href="..." />) for GitHub Pages
+  // set publicPath (e.g. `<base href="..." />`) for GitHub Pages
   // https://github.com/storybookjs/storybook/issues/12444#issuecomment-1179671255
+  // Note: Used string-replace-loader@^2.x for webpack v4 compat to support current Storybook
   webpackFinal: async (config) => {
     if (process.env.GH_PAGES) {
       config.module.rules.push({
