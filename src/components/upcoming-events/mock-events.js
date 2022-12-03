@@ -1,5 +1,5 @@
 const SINGLE_EVENT = [{
-  title: 'Tuesday\'s Tunes Season 3 - Premier!',
+  title: 'Tuesday\'s Tunes Season 3 - Teaser Trailer!',
   startTime: Date.now() + 300000,
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite.'
 }];
@@ -19,8 +19,8 @@ const MULTIPLE_EVENTS = [{
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite.',
   link: 'http://www.facebook.com/'
 }, {
-  title: 'Tuesday\'s Tunes Season 3 - Teaser Trailer',
-  startTime: SINGLE_EVENT[0].startTime - (86400000 * 5),
+  title: 'Tuesday\'s Tunes Season 3 - Premier',
+  startTime: SINGLE_EVENT[0].startTime + (86400000 * 5),
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elite.',
   link: 'http://www.facebook.com/'
 }, {
