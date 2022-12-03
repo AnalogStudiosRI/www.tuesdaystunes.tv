@@ -98,11 +98,11 @@ describe('Components/Upcoming Events', () => {
   
       await events.updateComplete;
 
-      // 3, 1, 0, 2, 4 
+      // 1, 3, 0, 2, 4
       ORDERED_EVENTS = [{
-        ...MULTIPLE_EVENTS[3]
-      }, {
         ...MULTIPLE_EVENTS[1]
+      }, {
+        ...MULTIPLE_EVENTS[3]
       }, {
         ...MULTIPLE_EVENTS[0]
       }, {
