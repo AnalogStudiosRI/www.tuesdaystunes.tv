@@ -9,6 +9,8 @@ jobs:
 
   build-and-deploy:
     runs-on: ubuntu-18.04
+    env:
+      GH_PAGES: true
   
     steps:
     - uses: actions/checkout@v2
@@ -22,7 +24,7 @@ jobs:
 
     - name: Build
       run: |
-        GH_PAGES=true yarn clean && yarn story:build
+        yarn clean && yarn story:build
 
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
