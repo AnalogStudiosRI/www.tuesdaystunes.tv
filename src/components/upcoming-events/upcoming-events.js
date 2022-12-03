@@ -74,7 +74,7 @@ export default class UpcomingEvents extends HTMLElement {
                     ? `<a title="${title}" href="${link}" class="underline">${formattedTitle}</a>`
                     : formattedTitle;
 
-                  if(!isNextUpcomingEventId && monthIdx === 0 && startTime >= now.getTime()) {
+                  if (!isNextUpcomingEventId && monthIdx === 0 && startTime >= now.getTime()) {
                     isNextUpcomingEventId = id;
                   }
 
