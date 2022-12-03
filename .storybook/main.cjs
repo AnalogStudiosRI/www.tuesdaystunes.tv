@@ -25,8 +25,8 @@ module.exports = {
         loader: 'string-replace-loader',
         options: {
           search: /\/assets\//g,
-          replace: '/www.tuesdaystunes.tv/assets/',
-        },
+          replace: '/www.tuesdaystunes.tv/assets/'
+        }
       });
     }
     return config;
