@@ -22,7 +22,7 @@ jobs:
 
     - name: Build
       run: |
-        yarn clean && yarn story:build
+        GH_PAGES=true yarn clean && yarn story:build
 
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
