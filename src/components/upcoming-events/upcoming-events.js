@@ -17,10 +17,10 @@ export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
     const now = new Date();
     now.setDate(1); // set to be the beginning of the current month
-    const currentTime = now.getTime();
+    const startOfCurrentMonthTime = now.getTime();
     const eventsByMonth = {};
     const events = (this.getAttribute('events') ? JSON.parse(this.getAttribute('events')) : [])
-      .filter((event) => event.startTime >= currentTime) // filter out old events except ones that are also in the current month
+      .filter((event) => event.startTime >= startOfCurrentMonthTime) // filter out old events except ones that are also in the current month
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
