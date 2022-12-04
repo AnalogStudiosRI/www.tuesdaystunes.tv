@@ -16,6 +16,13 @@ const MONTH_INDEX_MAPPER = [
 export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
     const eventsByMonth = {};
+    const now = new Date();
+    now.setDate(1); // set to be the beginning of the current month
+
+    const currentTime = now.getTime()
+    console.debug({ now });
+
+    // now.setDate(1);
     // console.debug('ATTRIBUTE', this.getAttribute('events'));
     // console.debug('----------------');
     console.debug('ATTRIBUTE PARSED', JSON.parse(this.getAttribute('events')));
@@ -24,24 +31,24 @@ export default class UpcomingEvents extends HTMLElement {
       .filter((event) => {
         // filter out old events except ones that are also in the current month
         const { startTime } = event;
-        const now = new Date();
+        // const now = new Date();
 
         // set to be the beginning of the current month
-        now.setDate(1);
-        now.setFullYear(now.getFullYear());
-        now.setMonth(now.getMonth());
+        // now.setDate(1);
+        // now.setFullYear(now.getFullYear());
+        // now.setMonth(now.getMonth());
 
-        const isInCurrentMonth = startTime >= now.getTime();
+        // const isInCurrentMonth = startTime >= now.getTime();
 
-        return startTime >= now.getTime() || isInCurrentMonth;
+
+        return startTime >= currentTime; //  || isInCurrentMonth;
       })
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
-      console.debug('FILTERED EVENTS', { events });
-      console.debug('----------------');
-      const noEvents = events.length === 0
-      ? '<h2 class="text-center">No Upcoming Events</h2>'
-      : '';
-
+    console.debug('FILTERED EVENTS', { events });
+    console.debug('----------------');
+    const noEvents = events.length === 0
+    ? '<h2 class="text-center">No Upcoming Events</h2>'
+    : '';
       
     // group events by month
     events.forEach((event) => {
