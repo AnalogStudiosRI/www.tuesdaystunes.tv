@@ -6,6 +6,12 @@ import '../components/youtube-playlist/youtube-playlist.js';
 
 export default class Home extends HTMLElement {
   async connectedCallback() {
+    console.debug('RAW', await fetch('https://www.analogstudios.net/api/v2/events').then(resp => resp.json()));
+    console.debug('----------------');
+    
+    console.debug('RAW w/ Tag', await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt').then(resp => resp.json()));
+    console.debug('----------------');
+
     const events = (await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt')
       .then(resp => resp.json()))
       .map(event => {
@@ -14,6 +20,9 @@ export default class Home extends HTMLElement {
           startTime: event.startTime * 1000
         };
       });
+
+    console.debug('FINAL', { events });
+    console.debug('----------------');
 
     this.innerHTML = `
       <div
