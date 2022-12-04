@@ -12,7 +12,7 @@ export default class Home extends HTMLElement {
     // console.debug('RAW w/ Tag', await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt').then(resp => resp.json()));
     // console.debug('----------------');
 
-    const events = (await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt')
+    const events = (await fetch('https://www.analogstudios.net/api/v2/events?tag=tt')
       .then(resp => resp.json()))
       .map(event => {
         return {

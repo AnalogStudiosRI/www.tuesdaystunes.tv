@@ -15,41 +15,33 @@ const MONTH_INDEX_MAPPER = [
 
 export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
+    console.debug('ATTRIBUTE PARSED', this.getAttribute('events'));
+    console.debug('ATTRIBUTE TYPE', typeof this.getAttribute('events'));
+    console.debug('----------------');
     const eventsByMonth = {};
     const now = new Date();
     now.setDate(1); // set to be the beginning of the current month
 
-    const currentTime = now.getTime()
-    console.debug({ currentTime });
-
-    // now.setDate(1);
-    // console.debug('ATTRIBUTE', this.getAttribute('events'));
-    // console.debug('----------------');
-    console.debug('ATTRIBUTE PARSED', JSON.parse(this.getAttribute('events')));
-    console.debug('----------------');
-    const events = this.getAttribute('events') !== '' ? JSON.parse(this.getAttribute('events')) : []
+    const events = (this.getAttribute('events') ? JSON.parse(this.getAttribute('events')) : [])
       .filter((event) => {
         // filter out old events except ones that are also in the current month
         const { startTime } = event;
-        console.debug({ event });
-        // const now = new Date();
 
         // set to be the beginning of the current month
         // now.setDate(1);
         // now.setFullYear(now.getFullYear());
         // now.setMonth(now.getMonth());
 
-        // const isInCurrentMonth = startTime >= now.getTime();
+        console.debug('@@@@@@@@@@@@', now.getTime());
+        return startTime >= now.getTime();
 
-
-        return startTime >= currentTime; //  || isInCurrentMonth;
+        // return startTime >= now.getTime() || isInCurrentMonth;
       })
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
-    console.debug('FILTERED EVENTS', { events });
-    console.debug('----------------');
     const noEvents = events.length === 0
-    ? '<h2 class="text-center">No Upcoming Events</h2>'
-    : '';
+      ? '<h2 class="text-center">No Upcoming Events</h2>'
+      : '';
+    console.debug('FILTERED EVENTS', { events });
       
     // group events by month
     events.forEach((event) => {
