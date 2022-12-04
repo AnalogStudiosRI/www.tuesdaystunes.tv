@@ -25,7 +25,6 @@ export default class UpcomingEvents extends HTMLElement {
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
       : '';
-    console.debug('FILTERED EVENTS', { events });
 
     // group events by month
     events.forEach((event) => {
