@@ -15,22 +15,12 @@ const MONTH_INDEX_MAPPER = [
 
 export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
+    const now = new Date();
+    now.setDate(1); // set to be the beginning of the current month
+    const startOfCurrentMonthTime = now.getTime();
     const eventsByMonth = {};
-    const events = (JSON.parse(this.getAttribute('events')) || [])
-      .filter((event) => {
-        // filter out old events except ones that are also in the current month
-        const { startTime } = event;
-        const now = new Date();
-
-        // set to be the beginning of the current month
-        now.setDate(1);
-        now.setFullYear(now.getFullYear());
-        now.setMonth(now.getMonth());
-
-        const isInCurrentMonth = startTime >= now.getTime();
-
-        return startTime >= now.getTime() || isInCurrentMonth;
-      })
+    const events = (this.getAttribute('events') ? JSON.parse(this.getAttribute('events')) : [])
+      .filter((event) => event.startTime >= startOfCurrentMonthTime) // filter out old events except ones that are also in the current month
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
