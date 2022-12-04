@@ -15,34 +15,18 @@ const MONTH_INDEX_MAPPER = [
 
 export default class UpcomingEvents extends HTMLElement {
   connectedCallback() {
-    console.debug('ATTRIBUTE PARSED', this.getAttribute('events'));
-    console.debug('ATTRIBUTE TYPE', typeof this.getAttribute('events'));
-    console.debug('----------------');
-    const eventsByMonth = {};
     const now = new Date();
     now.setDate(1); // set to be the beginning of the current month
-
+    const currentTime = now.getTime();
+    const eventsByMonth = {};
     const events = (this.getAttribute('events') ? JSON.parse(this.getAttribute('events')) : [])
-      .filter((event) => {
-        // filter out old events except ones that are also in the current month
-        const { startTime } = event;
-
-        // set to be the beginning of the current month
-        // now.setDate(1);
-        // now.setFullYear(now.getFullYear());
-        // now.setMonth(now.getMonth());
-
-        console.debug('@@@@@@@@@@@@', now.getTime());
-        return startTime >= now.getTime();
-
-        // return startTime >= now.getTime() || isInCurrentMonth;
-      })
+      .filter((event) => event.startTime >= currentTime) // filter out old events except ones that are also in the current month
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
       : '';
     console.debug('FILTERED EVENTS', { events });
-      
+
     // group events by month
     events.forEach((event) => {
       const time = new Date(event.startTime);
