@@ -20,7 +20,7 @@ export default class UpcomingEvents extends HTMLElement {
     now.setDate(1); // set to be the beginning of the current month
 
     const currentTime = now.getTime()
-    console.debug({ now });
+    console.debug({ currentTime });
 
     // now.setDate(1);
     // console.debug('ATTRIBUTE', this.getAttribute('events'));
