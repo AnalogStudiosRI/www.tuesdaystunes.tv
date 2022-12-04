@@ -6,7 +6,7 @@ import '../components/youtube-playlist/youtube-playlist.js';
 
 export default class Home extends HTMLElement {
   async connectedCallback() {
-    const events = (await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt')
+    const events = (await fetch('https://www.analogstudios.net/api/v2/events?tag=tt')
       .then(resp => resp.json()))
       .map(event => {
         return {
