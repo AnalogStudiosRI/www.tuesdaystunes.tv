@@ -51,7 +51,9 @@ export default class UpcomingEvents extends HTMLElement {
         ${noEvents}
 
         ${
-          Object.keys(eventsByMonth).map((month) => {
+          Object.keys(eventsByMonth).map((month, monthIdx) => {
+            let isNextUpcomingEventId = null;
+
             return `
               <div class="mb-6">
                 <h3
@@ -62,7 +64,7 @@ export default class UpcomingEvents extends HTMLElement {
                 </h3>
 
                 ${eventsByMonth[month].map((event) => {
-                  const { startTime, title, link } = event;
+                  const { id, startTime, title, link } = event;
                   const time = new Date(startTime);
                   const hours = time.getHours();
                   const date = time.getDate();
@@ -71,6 +73,12 @@ export default class UpcomingEvents extends HTMLElement {
                   const eventLink = link
                     ? `<a title="${title}" href="${link}" class="underline">${formattedTitle}</a>`
                     : formattedTitle;
+
+                  if (!isNextUpcomingEventId && monthIdx === 0 && startTime >= now.getTime()) {
+                    isNextUpcomingEventId = id;
+                  }
+
+                  const isNextUpcomingEvent = isNextUpcomingEventId === id ? '👈' : '';
                     
                   return `
                     <div>
@@ -87,7 +95,7 @@ export default class UpcomingEvents extends HTMLElement {
                         <span
                           style="color:var(--color-secondary);"
                         >
-                          ${eventLink}
+                          ${eventLink} ${isNextUpcomingEvent}
                         </span>
                       </h4>
                     </div>

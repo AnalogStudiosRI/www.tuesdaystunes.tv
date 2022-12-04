@@ -17,14 +17,15 @@ const MONTH_INDEX_MAPPER = [
   'December'
 ];
 
-function formatEventText(event) {
-  const { title, startTime } = event;
+function formatEventText(event, nextUpcomingEventId) {
+  const { id, title, startTime } = event;
   const time = new Date(startTime);
   const date = time.getDate();
   const hours = time.getHours();
   const hour = hours > 12 ? hours - 12 : hours;
+  const isNextUpcomingEvent = nextUpcomingEventId === id ? '👈' : '';
 
-  return `${date}${title}@${hour}pm`.replace(/ /g, '');
+  return `${date}${title}@${hour}pm ${isNextUpcomingEvent}`.replace(/ /g, '');
 }
 
 describe('Components/Upcoming Events', () => {
@@ -81,13 +82,13 @@ describe('Components/Upcoming Events', () => {
     it('should display the correct date details', () => {
       const event = SINGLE_EVENT[0];
       const headings = events.querySelectorAll('h4');
-      const display = formatEventText(event);
+      const display = formatEventText(event, event.id);
 
       expect(headings[0].textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
     });
   });
 
-  describe('Multiple events', () => {
+  describe.only('Multiple events', () => {
     let ORDERED_EVENTS = [];
 
     before(async () => {
@@ -139,11 +140,21 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should display the correct date details', () => {
+      const now = new Date();
+      const month = now.getMonth();
       const headings = events.querySelectorAll('h4');
+      let isNextUpcomingEventId = null;
 
       headings.forEach((heading, idx) => {
         const event = ORDERED_EVENTS[idx];
-        const display = formatEventText(event);
+        const { startTime, id } = event;
+        const eventTime = new Date(startTime);
+
+        if (!isNextUpcomingEventId && eventTime.getMonth() === month && startTime >= now.getTime()) {
+          isNextUpcomingEventId = id;
+        }
+        
+        const display = formatEventText(event, isNextUpcomingEventId);
 
         expect(heading.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
       });
