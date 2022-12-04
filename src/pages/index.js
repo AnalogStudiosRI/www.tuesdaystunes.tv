@@ -6,11 +6,11 @@ import '../components/youtube-playlist/youtube-playlist.js';
 
 export default class Home extends HTMLElement {
   async connectedCallback() {
-    console.debug('RAW', await fetch('https://www.analogstudios.net/api/v2/events').then(resp => resp.json()));
-    console.debug('----------------');
+    // console.debug('RAW', await fetch('https://www.analogstudios.net/api/v2/events').then(resp => resp.json()));
+    // console.debug('----------------');
     
-    console.debug('RAW w/ Tag', await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt').then(resp => resp.json()));
-    console.debug('----------------');
+    // console.debug('RAW w/ Tag', await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt').then(resp => resp.json()));
+    // console.debug('----------------');
 
     const events = (await fetch('https://www.analogstudios.net/api/v2/events/?tag=tt')
       .then(resp => resp.json()))
@@ -21,7 +21,7 @@ export default class Home extends HTMLElement {
         };
       });
 
-    console.debug('FINAL', { events });
+    console.debug('FINAL FETCH', { events });
     console.debug('----------------');
 
     this.innerHTML = `
