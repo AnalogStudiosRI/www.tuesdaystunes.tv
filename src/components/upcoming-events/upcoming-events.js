@@ -27,10 +27,11 @@ export default class UpcomingEvents extends HTMLElement {
     // console.debug('----------------');
     console.debug('ATTRIBUTE PARSED', JSON.parse(this.getAttribute('events')));
     console.debug('----------------');
-    const events = (JSON.parse(this.getAttribute('events') || []))
+    const events = this.getAttribute('events') !== '' ? JSON.parse(this.getAttribute('events')) : []
       .filter((event) => {
         // filter out old events except ones that are also in the current month
         const { startTime } = event;
+        console.debug({ event });
         // const now = new Date();
 
         // set to be the beginning of the current month
