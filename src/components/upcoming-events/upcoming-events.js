@@ -27,7 +27,7 @@ export default class UpcomingEvents extends HTMLElement {
     // console.debug('----------------');
     console.debug('ATTRIBUTE PARSED', JSON.parse(this.getAttribute('events')));
     console.debug('----------------');
-    const events = (JSON.parse(this.getAttribute('events')) || [])
+    const events = (JSON.parse(this.getAttribute('events') || []))
       .filter((event) => {
         // filter out old events except ones that are also in the current month
         const { startTime } = event;

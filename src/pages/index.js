@@ -21,8 +21,8 @@ export default class Home extends HTMLElement {
         };
       });
 
-    console.debug('FINAL FETCH', { events });
-    console.debug('----------------');
+    // console.debug('FINAL FETCH', { events });
+    // console.debug('----------------');
 
     this.innerHTML = `
       <div
