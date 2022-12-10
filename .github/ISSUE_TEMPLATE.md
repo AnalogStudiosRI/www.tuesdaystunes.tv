@@ -1,8 +1,5 @@
 ## Type of Change
-- [ ] New Feature Request
-- [ ] Improvement / Suggestion
-- [ ] Bug
-- [ ] Other (please clarify below)
+<!-- New Feature / Enhancemtn / Bug / Other -->
 
 ## Summary
 <!-- Brief summary of the issue. -->
