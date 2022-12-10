@@ -47,6 +47,7 @@
     "autoprefixer": "^9.8.8",
     "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
+    "eslint-plugin-no-only-tests": "^3.1.0",
     "http-server": "^14.1.1",
     "lit-html": "^2.3.1",
     "rimraf": "^3.0.2",
