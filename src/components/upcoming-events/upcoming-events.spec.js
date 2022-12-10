@@ -88,7 +88,7 @@ describe('Components/Upcoming Events', () => {
     });
   });
 
-  describe.only('Multiple events', () => {
+  describe('Multiple events', () => {
     let ORDERED_EVENTS = [];
 
     before(async () => {
