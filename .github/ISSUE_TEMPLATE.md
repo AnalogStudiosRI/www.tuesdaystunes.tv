@@ -1,5 +1,5 @@
 ## Type of Change
-<!-- New Feature / Enhancemtn / Bug / Other -->
+<!-- New Feature / Enhancement / Bug / Other -->
 
 ## Summary
 <!-- Brief summary of the issue. -->
