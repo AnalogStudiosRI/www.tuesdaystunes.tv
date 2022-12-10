@@ -149,8 +149,19 @@ describe('Components/Upcoming Events', () => {
         const event = ORDERED_EVENTS[idx];
         const { startTime, id } = event;
         const eventTime = new Date(startTime);
+        const nextEventIndex = idx + 1;
+        let hasNextMonthEvent = false;
+        
+        if (ORDERED_EVENTS[nextEventIndex]) {
+          const { startTime } = ORDERED_EVENTS[nextEventIndex];
+          const eventTime = new Date(startTime);
 
-        if (!isNextUpcomingEventId && eventTime.getMonth() === month && startTime >= now.getTime()) {
+          if (eventTime.getMonth() === month) {
+            hasNextMonthEvent = true;
+          }
+        }
+
+        if (eventTime.getMonth() === month && !hasNextMonthEvent && startTime >= now.getTime()) {
           isNextUpcomingEventId = id;
         }
         
