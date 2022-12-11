@@ -16,12 +16,12 @@ export default class Nav extends HTMLElement {
     const { navLinks } = this;
 
     if (this.innerHTML !== '') {
+      // if already server-rendered, all we need to do is highlight the active link
       Array.from(this.querySelectorAll('a')).forEach(link => {
         const path = globalThis.location.pathname;
+        const isCurrentLink = link.getAttribute('href').replace(window.location.origin, '') === path;
 
-        if (link.getAttribute('href').replace(window.location.origin, '') === path) {
-          link.style.color = 'var(--color-accent)';
-        }
+        link.style.color = isCurrentLink ? 'var(--color-accent)' : 'var(--color-black)';
       });
     } else {
       this.innerHTML = `
