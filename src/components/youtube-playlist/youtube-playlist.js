@@ -1,8 +1,8 @@
-import fetch from 'node-fetch';
-
 export default class YouTubePlaylist extends HTMLElement {
   async connectedCallback() {
     // https://developers.google.com/youtube/v3/docs/playlistItems
+    const offset = 0;
+    const limit = 10;
     const playlistItems = (await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?key=${process.env.API_KEY_YOUTUBE}&playlistId=PLrY8SmqJ5XZ_UvVurEvGg8i10g-cxMudZ&maxResults=50&part=snippet`) // eslint-disable-line max-len
       .then(resp => resp.json()))
       .items.map(item => item.snippet)
@@ -17,20 +17,13 @@ export default class YouTubePlaylist extends HTMLElement {
       </h2>
 
       ${
-        playlistItems.map((item) => {
+        // https://developers-dot-devsite-v2-prod.appspot.com/youtube/v3/docs/videos
+        playlistItems.slice(offset, limit).map((item, idx) => {
           return `
             <div class="p-4 youtube-container">
-              <iframe
-                style="border-radius:12px"
-                src="https://www.youtube.com/embed/${item.resourceId.videoId}"
-                width="100%"
-                height="500px"
-                title="Spotify Playlist"
-                frameBorder="0"
-                allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy">
-              </iframe>
+              <h1>${offset + idx + 1}) ${item.title}</h1> 
+              <img src="${item.thumbnails.standard.url}">
+              <hr/>
             </div>
           `;
         }).join('')
