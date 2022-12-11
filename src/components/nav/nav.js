@@ -22,7 +22,7 @@ export default class Nav extends HTMLElement {
           navLinks.map((link, index) => {
             const { name, url } = link;
             const isLast = index + 1 === navLinks.length;
-            const path = typeof window === 'undefined' ? null : window.location.pathname;
+            const path = typeof globalThis.location === 'undefined' ? null : globalThis.location.pathname;
             const activePath = path === url;
 
             return `
