@@ -6,19 +6,8 @@ export default class Nav extends HTMLElement {
         name: 'Home',
         url: '/'
       }, {
-        name: 'Events',
-        url: '/events'
-      }, {
-        name: 'Media',
-        url: '/media'
-      },
-      {
-        name: 'Merchendise',
-        url: '/merchendise'
-      },
-      {
-        name: 'The Crew',
-        url: '/the_crew'
+        name: 'Contact',
+        url: '/contact/'
       }
     ];
   }
