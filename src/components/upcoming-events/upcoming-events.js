@@ -26,8 +26,10 @@ export default class UpcomingEvents extends HTMLElement {
       ? '<h2 class="text-center">No Upcoming Events</h2>'
       : '';
 
+    const nextUpcomingEventIdx = events.findIndex(e => e?.startTime && e?.startTime > Date.now())
+
     // group events by month
-    events.forEach((event) => {
+    events.forEach((event, eventIdx) => {
       const time = new Date(event.startTime);
       const month = time.getMonth();
       const monthKey = MONTH_INDEX_MAPPER[month];
@@ -36,7 +38,10 @@ export default class UpcomingEvents extends HTMLElement {
         eventsByMonth[monthKey] = [];
       }
 
-      eventsByMonth[monthKey].push(event);
+      eventsByMonth[monthKey].push({
+        ...event,
+        isNext: eventIdx === nextUpcomingEventIdx
+      });
     });
 
     /* eslint-disable indent */
@@ -51,8 +56,7 @@ export default class UpcomingEvents extends HTMLElement {
         ${noEvents}
 
         ${
-          Object.keys(eventsByMonth).map((month, monthIdx) => {
-            let isNextUpcomingEventId = null;
+          Object.keys(eventsByMonth).map(month => {
 
             return `
               <div class="mb-6">
@@ -63,8 +67,8 @@ export default class UpcomingEvents extends HTMLElement {
                   ${month}
                 </h3>
 
-                ${eventsByMonth[month].map((event, eventIdx) => {
-                  const { id, startTime, title, link } = event;
+                ${eventsByMonth[month].map(event => {
+                  const { startTime, title, link, isNext } = event;
                   const time = new Date(startTime);
                   const hours = time.getHours();
                   const date = time.getDate();
@@ -74,12 +78,6 @@ export default class UpcomingEvents extends HTMLElement {
                     ? `<a title="${title}" href="${link}" class="underline">${formattedTitle}</a>`
                     : formattedTitle;
 
-                  if (monthIdx === 0 && !eventsByMonth[month][eventIdx + 1] && startTime >= now.getTime()) {
-                    isNextUpcomingEventId = id;
-                  }
-
-                  const isNextUpcomingEventIndicator = isNextUpcomingEventId === id ? '👈' : '';
-                    
                   return `
                     <div>
                       <h4
@@ -95,7 +93,7 @@ export default class UpcomingEvents extends HTMLElement {
                         <span
                           style="color:var(--color-secondary);"
                         >
-                          ${eventLink} ${isNextUpcomingEventIndicator}
+                          ${eventLink} ${isNext ? '👈' : ''}
                         </span>
                       </h4>
                     </div>
