@@ -103,20 +103,20 @@ describe('Components/Upcoming Events', () => {
       // 1, 3, 0, 2, 4
       ORDERED_EVENTS = [{
         ...MULTIPLE_EVENTS[1],
-        isNext: true,
+        isNext: true
       }, {
         ...MULTIPLE_EVENTS[3],
-        isNext: false,
+        isNext: false
       }, {
         ...MULTIPLE_EVENTS[0],
-        isNext: false,
+        isNext: false
       }, {
         ...MULTIPLE_EVENTS[2],
-        isNext: false,
+        isNext: false
       }, {
         ...MULTIPLE_EVENTS[4],
-        isNext: false,
-      }]
+        isNext: false
+      }];
     });
 
     it('should not display the no upcoming events text', () => {
