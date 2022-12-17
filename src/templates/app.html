@@ -29,7 +29,7 @@
 
     <script>
       window.addEventListener('DOMContentLoaded', () => {
-        const page = 10;
+        const page = 5;
         let offset = 0;
 
         document.getElementById('load-yt').addEventListener('click', async () => {
@@ -38,7 +38,7 @@
           const html = await fetch(`/api/fragment?offset=${offset}`).then(resp => resp.text());
 
           console.debug({ html });
-          document.body.prepend(html);
+          document.getElementsByTagName('tt-youtube-playlist')[0].insertAdjacentHTML('beforeend', html);
         });
       });
     </script>
@@ -58,6 +58,8 @@
       >
         <page-outlet></page-outlet>
       </div>
+
+      <button id="load-yt" style="text-align:center">Load More Episodes...</button>
 
       <button id="load-yt" style="text-align:center">Load More Episodes...</button>
 

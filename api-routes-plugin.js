@@ -42,7 +42,7 @@ const greenwoodApiRoutesPlugin = () => {
     type: 'resource',
     name: 'plugin-api-routes',
     provider: (compilation, options) => new ApiRoutesResource(compilation, options)
-  }
+  };
 };
 
 export { greenwoodApiRoutesPlugin };

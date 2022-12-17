@@ -1,12 +1,10 @@
+import '../video-card/video-card.js';
+import { getVideos } from '../../services/youtube.js';
+
 export default class YouTubePlaylist extends HTMLElement {
   async connectedCallback() {
-    // https://developers.google.com/youtube/v3/docs/playlistItems
     const offset = 0;
-    const limit = 10;
-    const playlistItems = (await fetch(`https://youtube.googleapis.com/youtube/v3/playlistItems?key=${process.env.API_KEY_YOUTUBE}&playlistId=PLrY8SmqJ5XZ_UvVurEvGg8i10g-cxMudZ&maxResults=50&part=snippet`) // eslint-disable-line max-len
-      .then(resp => resp.json()))
-      .items.map(item => item.snippet)
-      .reverse();
+    const videos = await getVideos(offset);
     
     this.innerHTML = `
       <h2
@@ -18,13 +16,12 @@ export default class YouTubePlaylist extends HTMLElement {
 
       ${
         // https://developers-dot-devsite-v2-prod.appspot.com/youtube/v3/docs/videos
-        playlistItems.slice(offset, limit).map((item, idx) => {
+        videos.map((item, idx) => {
           return `
-            <div class="p-4 youtube-container">
-              <h1>${offset + idx + 1}) ${item.title}</h1> 
-              <img src="${item.thumbnails.standard.url}">
-              <hr/>
-            </div>
+            <tt-video-card
+              title="${offset + idx + 1}) ${item.title}"
+              thumbnail="${item.thumbnails.standard.url}"
+            ></tt-video-card>
           `;
         }).join('')
       }
