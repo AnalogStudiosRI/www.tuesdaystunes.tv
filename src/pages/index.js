@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import '../components/cast-and-crew/cast-and-crew.js';
 import '../components/upcoming-events/upcoming-events.js';
 import '../components/spotify-playlist/spotify-playlist.js';
