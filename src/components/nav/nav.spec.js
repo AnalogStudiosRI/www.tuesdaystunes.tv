@@ -27,25 +27,19 @@ describe('Components/Nav', () => {
     });
 
     it('should have the expected of links in the nav', () => {
-      expect(links.length).to.equal(5);
+      expect(links.length).to.equal(2);
       const navLinks = Array.from(links).map(link => link.getAttribute('href'));
 
       expect(navLinks.includes('/'));
-      expect(navLinks.includes('/events'));
-      expect(navLinks.includes('/media'));
-      expect(navLinks.includes('/merchandise'));
-      expect(navLinks.includes('/the_crew'));
+      expect(navLinks.includes('/contact/'));
     });
 
-    it('should have the expected of links in the correct order', () => {
-      expect(links.length).to.equal(5);
-      const navText = Array.from(links).map(link => link.innerText);
+    it('should have the expected of link labels in the correct order', () => {
+      expect(links.length).to.equal(2);
+      const navText = Array.from(links).map(link => link.innerText.trim());
 
-      expect(navText[0].split(' ').some(word => word.includes('Home')));
-      expect(navText[1].split(' ').some(word => word.includes('Events')));
-      expect(navText[2].split(' ').some(word => word.includes('Media')));
-      expect(navText[3].split(' ').some(word => word.includes('Merchendise')));
-      expect(navText[4].trim().includes('The Crew'));
+      expect(navText[0]).to.equal('Home');
+      expect(navText[1]).to.equal('Contact');
     });
 
     after(async () => {
