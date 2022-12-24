@@ -27,6 +27,14 @@ function formatEventText(event) {
   return `${date}${title}@${hour}pm ${isNext ? '👈' : ''}`.replace(/ /g, '');
 }
 
+// <a> does not include the "date box", but includes everything else
+function formatLinkText(event) {
+  const linkEventText = formatEventText(event);
+  const time = new Date(event.startTime);
+
+  return linkEventText.replace(time.getDate(), '');
+}
+
 describe('Components/Upcoming Events', () => {
   let events;
 
@@ -155,7 +163,6 @@ describe('Components/Upcoming Events', () => {
       });
     });
 
-    // TODO use format formatEventText here
     it('should display the correct link details', () => {
       const links = events.querySelectorAll('a');
 
@@ -163,9 +170,7 @@ describe('Components/Upcoming Events', () => {
         const event = ORDERED_EVENTS[idx];
         const { title, startTime } = event;
         const time = new Date(startTime);
-        const hours = time.getHours();
-        const hour = hours > 12 ? hours - 12 : hours;
-        const display = `${title}@${hour}pm`.replace(/ /g, '');
+        const display = formatLinkText(event);
 
         expect(link.href).to.equal(event.link);
         expect(link.title).to.equal(title);
