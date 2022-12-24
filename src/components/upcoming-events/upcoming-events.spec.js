@@ -102,20 +102,15 @@ describe('Components/Upcoming Events', () => {
 
       // 1, 3, 0, 2, 4
       ORDERED_EVENTS = [{
-        ...MULTIPLE_EVENTS[1],
-        isNext: true
+        ...MULTIPLE_EVENTS[1]
       }, {
-        ...MULTIPLE_EVENTS[3],
-        isNext: false
+        ...MULTIPLE_EVENTS[3]
       }, {
-        ...MULTIPLE_EVENTS[0],
-        isNext: false
+        ...MULTIPLE_EVENTS[0]
       }, {
-        ...MULTIPLE_EVENTS[2],
-        isNext: false
+        ...MULTIPLE_EVENTS[2]
       }, {
-        ...MULTIPLE_EVENTS[4],
-        isNext: false
+        ...MULTIPLE_EVENTS[4]
       }];
     });
 
@@ -147,15 +142,20 @@ describe('Components/Upcoming Events', () => {
 
     it('should display the correct date details', () => {
       const headings = events.querySelectorAll('h4');
+      const nextUpcomingEventIdx = ORDERED_EVENTS.findIndex(e => e.startTime && e.startTime > Date.now())
 
       headings.forEach((heading, idx) => {
         const event = ORDERED_EVENTS[idx];
-        const display = formatEventText(event);
+        const display = formatEventText({
+          ...event,
+          isNext: event.id === ORDERED_EVENTS[nextUpcomingEventIdx].id
+        });
 
         expect(heading.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
       });
     });
 
+    // TODO use format formatEventText here
     it('should display the correct link details', () => {
       const links = events.querySelectorAll('a');
 
