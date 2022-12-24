@@ -9,9 +9,12 @@ export default class Home extends HTMLElement {
     const events = (await fetch('https://www.analogstudios.net/api/v2/events?tag=tt')
       .then(resp => resp.json()))
       .map(event => {
+        const { startTime, endTime } = event;
+
         return {
           ...event,
-          startTime: event.startTime * 1000
+          startTime: startTime * 1000,
+          endTime: endTime * 1000
         };
       });
 
