@@ -17,15 +17,14 @@ const MONTH_INDEX_MAPPER = [
   'December'
 ];
 
-function formatEventText(event, nextUpcomingEventId) {
-  const { id, title, startTime } = event;
+function formatEventText(event) {
+  const { title, startTime, isNext } = event;
   const time = new Date(startTime);
   const date = time.getDate();
   const hours = time.getHours();
   const hour = hours > 12 ? hours - 12 : hours;
-  const isNextUpcomingEvent = nextUpcomingEventId === id ? '👈' : '';
 
-  return `${date}${title}@${hour}pm ${isNextUpcomingEvent}`.replace(/ /g, '');
+  return `${date}${title}@${hour}pm ${isNext ? '👈' : ''}`.replace(/ /g, '');
 }
 
 describe('Components/Upcoming Events', () => {
@@ -80,9 +79,11 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should display the correct date details', () => {
-      const event = SINGLE_EVENT[0];
       const headings = events.querySelectorAll('h4');
-      const display = formatEventText(event, event.id);
+      const display = formatEventText({
+        ...SINGLE_EVENT[0],
+        isNext: true
+      });
 
       expect(headings[0].textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
     });
@@ -140,37 +141,21 @@ describe('Components/Upcoming Events', () => {
     });
 
     it('should display the correct date details', () => {
-      const now = new Date();
-      const month = now.getMonth();
       const headings = events.querySelectorAll('h4');
-      let isNextUpcomingEventId = null;
+      const nextUpcomingEventIdx = ORDERED_EVENTS.findIndex(e => e.startTime && e.startTime > Date.now());
 
       headings.forEach((heading, idx) => {
         const event = ORDERED_EVENTS[idx];
-        const { startTime, id } = event;
-        const eventTime = new Date(startTime);
-        const nextEventIndex = idx + 1;
-        let hasNextMonthEvent = false;
-        
-        if (ORDERED_EVENTS[nextEventIndex]) {
-          const { startTime } = ORDERED_EVENTS[nextEventIndex];
-          const eventTime = new Date(startTime);
-
-          if (eventTime.getMonth() === month) {
-            hasNextMonthEvent = true;
-          }
-        }
-
-        if (eventTime.getMonth() === month && !hasNextMonthEvent && startTime >= now.getTime()) {
-          isNextUpcomingEventId = id;
-        }
-        
-        const display = formatEventText(event, isNextUpcomingEventId);
+        const display = formatEventText({
+          ...event,
+          isNext: idx === nextUpcomingEventIdx
+        });
 
         expect(heading.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
       });
     });
 
+    // TODO use format formatEventText here
     it('should display the correct link details', () => {
       const links = events.querySelectorAll('a');
 
