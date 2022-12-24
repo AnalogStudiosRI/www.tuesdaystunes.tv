@@ -22,11 +22,10 @@ export default class UpcomingEvents extends HTMLElement {
     const events = (this.getAttribute('events') ? JSON.parse(this.getAttribute('events')) : [])
       .filter((event) => event.startTime >= startOfCurrentMonthTime) // filter out old events except ones that are also in the current month
       .sort((a, b) => a.startTime < b.startTime ? -1 : 1); // sort newest to latest
+    const nextUpcomingEventIdx = events.findIndex(e => e?.startTime && e?.startTime > Date.now());
     const noEvents = events.length === 0
       ? '<h2 class="text-center">No Upcoming Events</h2>'
       : '';
-
-    const nextUpcomingEventIdx = events.findIndex(e => e?.startTime && e?.startTime > Date.now())
 
     // group events by month
     events.forEach((event, eventIdx) => {

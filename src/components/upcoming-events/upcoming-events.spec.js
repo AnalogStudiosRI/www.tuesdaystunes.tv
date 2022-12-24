@@ -142,13 +142,13 @@ describe('Components/Upcoming Events', () => {
 
     it('should display the correct date details', () => {
       const headings = events.querySelectorAll('h4');
-      const nextUpcomingEventIdx = ORDERED_EVENTS.findIndex(e => e.startTime && e.startTime > Date.now())
+      const nextUpcomingEventIdx = ORDERED_EVENTS.findIndex(e => e.startTime && e.startTime > Date.now());
 
       headings.forEach((heading, idx) => {
         const event = ORDERED_EVENTS[idx];
         const display = formatEventText({
           ...event,
-          isNext: event.id === ORDERED_EVENTS[nextUpcomingEventIdx].id
+          isNext: idx === nextUpcomingEventIdx
         });
 
         expect(heading.textContent.replace(/\n/g, '').replace(/ /g, '')).to.equal(display);
