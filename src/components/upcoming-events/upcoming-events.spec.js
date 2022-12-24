@@ -168,8 +168,7 @@ describe('Components/Upcoming Events', () => {
 
       links.forEach((link, idx) => {
         const event = ORDERED_EVENTS[idx];
-        const { title, startTime } = event;
-        const time = new Date(startTime);
+        const { title } = event;
         const display = formatLinkText(event);
 
         expect(link.href).to.equal(event.link);
