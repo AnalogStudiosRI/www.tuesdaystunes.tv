@@ -15,7 +15,7 @@ export async function handler(request) {
             thumbnail="${item.thumbnails.standard.url}"
           ></tt-video-card>
         `;
-      }).join()
+      }).join('')
     }
   `, [
     new URL('../components/video-card/video-card.js', import.meta.url)
