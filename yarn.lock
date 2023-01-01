@@ -10273,10 +10273,10 @@ watchpack@^2.2.0, watchpack@^2.4.0:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-wc-compiler@~0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/wc-compiler/-/wc-compiler-0.8.0.tgz#1baadbdc3aff91ff1eba601e56effcb3d6dc5ea8"
-  integrity sha512-vkq9wcpMOTsIDgPvQYso01fQZTD2iGzKTVhO6AbbAz5bE8WUOvNAN9sPy56An26sVmMl/KNL2St5rVmFQ/lw9w==
+wc-compiler@0.6.2, wc-compiler@~0.8.0:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/wc-compiler/-/wc-compiler-0.6.2.tgz#5a8f4756b53aa938163cd9ccaa4040c7a9b4a4f1"
+  integrity sha512-ozZ2e+SNX8Uno+K/7c9fSacoEA5oBKk6E1bHcDCpcX02x7OY/JFuya7F4+Zweu5iGedSjWpDMt8IvAVgSRf1pA==
   dependencies:
     acorn "^8.7.0"
     acorn-jsx "^5.3.2"
