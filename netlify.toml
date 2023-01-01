@@ -8,3 +8,7 @@
 [build.environment]
   NODE_VERSION = "18.12.1"
   TZ = "America/New_York"
+  TZ = "America/New_York"
+
+[functions]
+  directory = "src/api"
