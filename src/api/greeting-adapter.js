@@ -1,7 +1,7 @@
 import { handler as greeting } from './greeting.js';
 
 // https://docs.netlify.com/functions/build/?fn-language=js#code-your-function-2
-export default async function handler (event, context) {
+export async function handler (event, context) {
   console.log({ event, context });
   const request = new Request(event.url);
   console.log(request);
