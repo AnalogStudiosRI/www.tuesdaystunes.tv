@@ -7,3 +7,5 @@ node_modules/
 public/
 reports/
 storybook-static/
+# Local Netlify folder
+.netlify

@@ -10,5 +10,7 @@
   TZ = "America/New_York"
   TZ = "America/New_York"
 
-[functions]
-  directory = "src/api"
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
