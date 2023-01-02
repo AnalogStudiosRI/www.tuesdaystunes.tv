@@ -5,7 +5,6 @@ export async function handler (event, context) {
   const request = new Request(rawUrl, { headers });
   const response = await fragment(request);
 
-  console.debug('resp', await response.text())
   return {
     statusCode: response.status,
     body: await response.text()
