@@ -27,9 +27,6 @@
     "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
     "clean": "rimraf public/ .greenwood/ ./storybook-static"
   },
-  "resolutions": {
-    "wc-compiler": "0.6.2"
-  },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4",
     "@greenwood/cli": "~0.28.0",
