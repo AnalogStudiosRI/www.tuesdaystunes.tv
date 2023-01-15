@@ -1,42 +1,34 @@
 /*
- * 
+ *
  * Enables using JavaScript to import SVG files, using ESM syntax.
  *
  */
-import fs from 'fs';
+import fs from 'fs/promises';
 import { ResourceInterface } from '@greenwood/cli/src/lib/resource-interface.js';
 
 class ImportSvgResource extends ResourceInterface {
   constructor(compilation, options) {
     super(compilation, options);
-    this.extensions = ['.svg'];
+    this.extensions = ['svg'];
     this.contentType = 'text/javascript';
   }
 
-  // TODO resolve as part of https://github.com/ProjectEvergreen/greenwood/issues/952
-  async shouldServe() {
-    return false;
-  }
+  async shouldIntercept(url) {
+    const { pathname, href, searchParams } = url;
+    const isSVG = pathname.split('.').pop() === this.extensions[0];
 
-  async shouldResolve() {
-    return false;
-  }
-
-  async shouldIntercept(url, body, headers = { request: {} }) {
-    const isSVG = url.split('.').pop() === 'svg';
-    const { originalUrl = '' } = headers.request;
-
-    return Promise.resolve(isSVG || (originalUrl.startsWith('file://') && originalUrl.endsWith('?type=svg')));
+    return isSVG || (href.startsWith('file://') && searchParams.has('type') === this.extensions[0]);
   }
 
   async intercept(url) {
-    const svg = await fs.promises.readFile(url, 'utf-8');
+    const svg = await fs.readFile(url, 'utf-8');
     const body = `const svg = '${svg.replace(/\n/g, '')}';\nexport default svg;`;
 
-    return {
-      body,
-      contentType: this.contentType
-    };
+    return new Response(body, {
+      headers: new Headers({
+        'Content-Type': this.contentType
+      })
+    });
   }
 }
 
