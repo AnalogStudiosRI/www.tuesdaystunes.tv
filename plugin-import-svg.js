@@ -26,7 +26,7 @@ class ImportSvgResource extends ResourceInterface {
     const isSVG = url.split('.').pop() === 'svg';
     const { originalUrl = '' } = headers.request;
 
-    return Promise.resolve(isSVG && originalUrl.startsWith('file://') && originalUrl.endsWith('?type=svg'));
+    return Promise.resolve(isSVG || (originalUrl.startsWith('file://') && originalUrl.endsWith('?type=svg')));
   }
 
   async intercept(url) {
