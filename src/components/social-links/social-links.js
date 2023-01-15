@@ -24,7 +24,7 @@ export default class SocialLinks extends HTMLElement {
     const { socialLinks } = this;
 
     this.innerHTML = `
-      <div class="text-center">
+      <div class="text-center social-links">
       ${
         socialLinks.map((link) => {
           const { logo, name, url } = link;
