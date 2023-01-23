@@ -30,7 +30,7 @@ export default class Home extends HTMLElement {
           />
           <tt-upcoming-events
             events='${JSON.stringify(events).replace(/'/g, '\\"')}'
-            class="block w-11/12 m-0 ml-auto mr-auto"
+            class="block sm:w-11/12 w-full m-0 ml-auto mr-auto"
           ></tt-upcoming-events>
         </div>
         <div class="col-span-6 md:col-span-3 p-2">

@@ -81,7 +81,7 @@ export default class UpcomingEvents extends HTMLElement {
                     <div>
                       <h4
                         style="color:var(--color-white); margin: .5rem auto;"
-                        class="w-11/12 sm:w-10/12 flex"
+                        class="sm:w-11/12 w-full pl-1 sm:pl-0 flex"
                       >
                         <span
                           class="inline-block w-8 h-[1.6rem] text-center mr-2"
