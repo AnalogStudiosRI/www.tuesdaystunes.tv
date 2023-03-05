@@ -28,7 +28,6 @@
     "clean": "rimraf public/ .greenwood/ ./storybook-static"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.13",
     "@esm-bundle/chai": "^4.3.4",
     "@greenwood/cli": "~0.27.0",
     "@greenwood/plugin-postcss": "~0.27.0",
@@ -43,7 +42,6 @@
     "@web/test-runner-junit-reporter": "^0.4.4",
     "@web/test-runner-puppeteer": "^0.10.0",
     "autoprefixer": "^9.8.8",
-    "babel-loader": "^8.2.5",
     "eslint": "^8.23.0",
     "eslint-plugin-no-only-tests": "^3.1.0",
     "http-server": "^14.1.1",
