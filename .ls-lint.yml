@@ -14,7 +14,7 @@ ls:
   .woff: kebabcase
   .woff2: kebabcase
 
-ignore: 
+ignore:
   - .git
   - .greenwood
   - node_modules
