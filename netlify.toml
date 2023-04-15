@@ -8,7 +8,6 @@
 [build.environment]
   NODE_VERSION = "18.12.1"
   TZ = "America/New_York"
-  TZ = "America/New_York"
 
 [[redirects]]
   from = "/api/*"
