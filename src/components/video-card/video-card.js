@@ -2,7 +2,7 @@ export default class VideoCard extends HTMLElement {
 
   selectVideo() {
     alert(`selected video to play is => ${this.getAttribute('title')}!`);
-  };
+  }
 
   connectedCallback() {
     const thumbnail = this.getAttribute('thumbnail');
