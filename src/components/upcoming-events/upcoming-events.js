@@ -74,7 +74,7 @@ export default class UpcomingEvents extends HTMLElement {
                   const hour = hours > 12 ? hours - 12 : hours; // here we assume an 8pm (e.g. afternoon) start time
                   const formattedTitle = `${title.replace(/"/g, '\'')} @ ${hour}pm`; // TODO https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv/issues/47
                   const eventLink = link
-                    ? `<a title="${title}" href="${link}" class="underline">${formattedTitle}</a>`
+                    ? `<a title="${title.replace(/"/g, '\'')}" href="${link}" class="underline">${formattedTitle}</a>`
                     : formattedTitle;
 
                   return `
