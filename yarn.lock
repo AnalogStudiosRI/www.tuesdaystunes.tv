@@ -17,7 +17,7 @@
   dependencies:
     default-browser-id "3.0.0"
 
-"@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.11", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6":
+"@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.11", "@babel/code-frame@^7.16.7", "@babel/code-frame@^7.18.6":
   version "7.18.6"
   resolved "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.18.6.tgz"
   integrity sha512-TDCmlK5eOvH+eH7cdAFlNXeVJqWIQ7gW9tY1GJIpUtFb6CmjVyq2VM3u71bOyR8CRihcCgMUYoDNyLXao3+70Q==
@@ -1456,13 +1456,16 @@
   resolved "https://registry.yarnpkg.com/@fal-works/esbuild-plugin-global-externals/-/esbuild-plugin-global-externals-2.1.2.tgz#c05ed35ad82df8e6ac616c68b92c2282bd083ba4"
   integrity sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==
 
-"@greenwood/cli@~0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@greenwood/cli/-/cli-0.27.0.tgz#afdc7e5bff0f309a920e59f455d1b6c3751aa1cd"
-  integrity sha512-SC/m7SIBB0dR2mstEhbq9hbBxz3cLXF+d9Z9skx0e+QOsdpwbvJHI+7VMzLlmpxee/gCd361pOJhiJibh29BEg==
+"@greenwood/cli@~0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@greenwood/cli/-/cli-0.28.0.tgz#c4964622ab4b6759224fa425572e4b053e137fb4"
+  integrity sha512-vRUDGnfbyBBZCDPa2ShWyh8iZ1buD37okAqebKqcnum7u/tcjHiLd2AwMjrkihMSn2Oxobx9F2aD1QL7/E/AOQ==
   dependencies:
+    "@rollup/plugin-commonjs" "^21.0.0"
     "@rollup/plugin-node-resolve" "^13.0.0"
     "@rollup/plugin-replace" "^2.3.4"
+    "@rollup/plugin-terser" "^0.1.0"
+    "@web/rollup-plugin-import-meta-assets" "^1.0.0"
     acorn "^8.0.1"
     acorn-walk "^8.0.0"
     commander "^2.20.0"
@@ -1472,7 +1475,6 @@
     koa "^2.13.0"
     livereload "^0.9.1"
     markdown-toc "^1.2.0"
-    node-fetch "^2.6.1"
     node-html-parser "^1.2.21"
     rehype-raw "^5.0.0"
     rehype-stringify "^8.0.0"
@@ -1480,14 +1482,13 @@
     remark-parse "^8.0.3"
     remark-rehype "^7.0.0"
     rollup "^2.58.0"
-    rollup-plugin-terser "^7.0.0"
     unified "^9.2.0"
-    wc-compiler "~0.6.1"
+    wc-compiler "~0.8.0"
 
-"@greenwood/plugin-postcss@~0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@greenwood/plugin-postcss/-/plugin-postcss-0.27.0.tgz#411ffc70c5b689a34db3fbd592544e2006271b40"
-  integrity sha512-uLUI9jw/Q9PSxammuDi8Tm2iOVqcJrpP1beaCXepuxs460choXfmrT+f3B5/L20jnqq+OZG4FiqIFAWsj9mehA==
+"@greenwood/plugin-postcss@~0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@greenwood/plugin-postcss/-/plugin-postcss-0.28.0.tgz#fd6ebebb9c675fcbcc4c62f79da8a394eaf6cdac"
+  integrity sha512-laDXCrpAUTkdf23ov3RJBXjQvji80Fd1l/ECweYZ21y3g+chFlRsd+AVnW/7DFKgAdefYXP3OIXWCLS/LlMnlQ==
   dependencies:
     postcss "^8.3.11"
     postcss-import "^13.0.0"
@@ -1689,6 +1690,19 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@rollup/plugin-commonjs@^21.0.0":
+  version "21.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-21.1.0.tgz#45576d7b47609af2db87f55a6d4b46e44fc3a553"
+  integrity sha512-6ZtHx3VHIp2ReNNDxHjuUml6ur+WcQ28N1yHgCQwsbNkQg2suhxGMDQGJOn/KuDxKtd1xuZP5xSTwBA4GQ8hbA==
+  dependencies:
+    "@rollup/pluginutils" "^3.1.0"
+    commondir "^1.0.1"
+    estree-walker "^2.0.1"
+    glob "^7.1.6"
+    is-reference "^1.2.1"
+    magic-string "^0.25.7"
+    resolve "^1.17.0"
+
 "@rollup/plugin-node-resolve@^13.0.0", "@rollup/plugin-node-resolve@^13.0.4":
   version "13.3.0"
   resolved "https://registry.npmjs.org/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.3.0.tgz"
@@ -1709,6 +1723,13 @@
     "@rollup/pluginutils" "^3.1.0"
     magic-string "^0.25.7"
 
+"@rollup/plugin-terser@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-terser/-/plugin-terser-0.1.0.tgz#7530c0f11667637419d71820461646c418526041"
+  integrity sha512-N2KK+qUfHX2hBzVzM41UWGLrEmcjVC37spC8R3c9mt3oEDFKh3N2e12/lLp9aVSt86veR0TQiCNQXrm8C6aiUQ==
+  dependencies:
+    terser "^5.15.1"
+
 "@rollup/pluginutils@^3.1.0":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@rollup/pluginutils/-/pluginutils-3.1.0.tgz"
@@ -1716,6 +1737,14 @@
   dependencies:
     "@types/estree" "0.0.39"
     estree-walker "^1.0.1"
+    picomatch "^2.2.2"
+
+"@rollup/pluginutils@^4.1.0":
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/@rollup/pluginutils/-/pluginutils-4.2.1.tgz#e6c6c3aba0744edce3fb2074922d3776c0af2a6d"
+  integrity sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==
+  dependencies:
+    estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
 "@sinclair/typebox@^0.25.16":
@@ -3030,6 +3059,15 @@
     "@types/parse5" "^6.0.1"
     parse5 "^6.0.1"
 
+"@web/rollup-plugin-import-meta-assets@^1.0.0":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@web/rollup-plugin-import-meta-assets/-/rollup-plugin-import-meta-assets-1.0.7.tgz#7048f717e2218a22af547371ffafdc4f534a2eea"
+  integrity sha512-ft44CqITUkNd8stwNb4ZOvrZ8DlPifM821jplksmxRGetg5Lx684oFrpfQJ7mfkU/Sa7B3dI1mHTX0DE52eBwg==
+  dependencies:
+    "@rollup/pluginutils" "^4.1.0"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+
 "@web/test-runner-chrome@^0.10.6", "@web/test-runner-chrome@^0.10.7":
   version "0.10.7"
   resolved "https://registry.npmjs.org/@web/test-runner-chrome/-/test-runner-chrome-0.10.7.tgz"
@@ -3348,7 +3386,7 @@ agent-base@6:
 
 aggregate-error@^3.0.0:
   version "3.1.0"
-  resolved "https://registry.npmjs.org/aggregate-error/-/aggregate-error-3.1.0.tgz"
+  resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-3.1.0.tgz#92670ff50f5359bdb7a3e0d40d0ec30c5737687a"
   integrity sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==
   dependencies:
     clean-stack "^2.0.0"
@@ -4050,7 +4088,7 @@ clean-css@^5.2.2:
 
 clean-stack@^2.0.0:
   version "2.2.0"
-  resolved "https://registry.npmjs.org/clean-stack/-/clean-stack-2.2.0.tgz"
+  resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
   integrity sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==
 
 cli-boxes@^2.2.1:
@@ -5068,6 +5106,11 @@ estree-walker@^1.0.1:
   resolved "https://registry.npmjs.org/estree-walker/-/estree-walker-1.0.1.tgz"
   integrity sha512-1fMXF3YP4pZZVozF8j/ZLfvnR8NSIljt56UhbZ5PeeDmmGHpgpdwQt7ITlGvYaQukCvuBRMLEiKiYC+oeIg4cg==
 
+estree-walker@^2.0.1, estree-walker@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
+  integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
+
 esutils@^2.0.2:
   version "2.0.3"
   resolved "https://registry.npmjs.org/esutils/-/esutils-2.0.3.tgz"
@@ -5621,9 +5664,9 @@ glob-to-regexp@^0.4.1:
   resolved "https://registry.yarnpkg.com/glob-to-regexp/-/glob-to-regexp-0.4.1.tgz#c75297087c851b9a578bd217dd59a92f59fe546e"
   integrity sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==
 
-glob@^7.0.0, glob@^7.1.3, glob@^7.1.4, glob@^7.1.7:
+glob@^7.0.0, glob@^7.1.3, glob@^7.1.4, glob@^7.1.6, glob@^7.1.7:
   version "7.2.3"
-  resolved "https://registry.npmjs.org/glob/-/glob-7.2.3.tgz"
+  resolved "https://registry.yarnpkg.com/glob/-/glob-7.2.3.tgz#b8df0fb802bbfa8e89bd1d938b4e16578ed44f2b"
   integrity sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==
   dependencies:
     fs.realpath "^1.0.0"
@@ -6406,6 +6449,13 @@ is-plain-object@^2.0.4:
   dependencies:
     isobject "^3.0.1"
 
+is-reference@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/is-reference/-/is-reference-1.2.1.tgz#8b2dac0b371f4bc994fdeaba9eb542d03002d0b7"
+  integrity sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==
+  dependencies:
+    "@types/estree" "*"
+
 is-regexp@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/is-regexp/-/is-regexp-2.1.0.tgz"
@@ -6567,15 +6617,6 @@ jest-util@^29.4.3:
     ci-info "^3.2.0"
     graceful-fs "^4.2.9"
     picomatch "^2.2.3"
-
-jest-worker@^26.2.1:
-  version "26.6.2"
-  resolved "https://registry.npmjs.org/jest-worker/-/jest-worker-26.6.2.tgz"
-  integrity sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==
-  dependencies:
-    "@types/node" "*"
-    merge-stream "^2.0.0"
-    supports-color "^7.0.0"
 
 jest-worker@^27.4.5:
   version "27.5.1"
@@ -7731,7 +7772,7 @@ p-locate@^5.0.0:
 
 p-map@^4.0.0:
   version "4.0.0"
-  resolved "https://registry.npmjs.org/p-map/-/p-map-4.0.0.tgz"
+  resolved "https://registry.yarnpkg.com/p-map/-/p-map-4.0.0.tgz#bb2f95a5eda2ec168ec9274e06a747c3e2904d2b"
   integrity sha512-/bjOqmgETBYB5BoEeGVea8dmvHb2m9GLy1E9W43yeyfP6QQCZGFNa+XRceJEuDB6zqr+gKpIAmlLebMpykw/MQ==
   dependencies:
     aggregate-error "^3.0.0"
@@ -8971,7 +9012,7 @@ resolve-path@^1.4.0:
     http-errors "~1.6.2"
     path-is-absolute "1.0.1"
 
-resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.14.2, resolve@^1.19.0, resolve@^1.20.0:
+resolve@^1.1.6, resolve@^1.1.7, resolve@^1.10.0, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.19.0, resolve@^1.20.0:
   version "1.22.1"
   resolved "https://registry.npmjs.org/resolve/-/resolve-1.22.1.tgz"
   integrity sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==
@@ -9023,16 +9064,6 @@ rimraf@~2.6.2:
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
   dependencies:
     glob "^7.1.3"
-
-rollup-plugin-terser@^7.0.0:
-  version "7.0.2"
-  resolved "https://registry.npmjs.org/rollup-plugin-terser/-/rollup-plugin-terser-7.0.2.tgz"
-  integrity sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==
-  dependencies:
-    "@babel/code-frame" "^7.10.4"
-    jest-worker "^26.2.1"
-    serialize-javascript "^4.0.0"
-    terser "^5.0.0"
 
 rollup@^2.58.0, rollup@^2.67.0:
   version "2.79.0"
@@ -9155,13 +9186,6 @@ send@0.18.0:
     on-finished "2.4.1"
     range-parser "~1.2.1"
     statuses "2.0.1"
-
-serialize-javascript@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-4.0.0.tgz"
-  integrity sha512-GaNA54380uFefWghODBWEGisLZFj00nS5ACs6yHa9nLqlLpVLO8ChDGeKRjZnV4Nh4n0Qi7nhYZD/9fCPzEqkw==
-  dependencies:
-    randombytes "^2.1.0"
 
 serialize-javascript@^6.0.0:
   version "6.0.1"
@@ -9561,7 +9585,7 @@ supports-color@^5.3.0:
   dependencies:
     has-flag "^3.0.0"
 
-supports-color@^7.0.0, supports-color@^7.1.0:
+supports-color@^7.1.0:
   version "7.2.0"
   resolved "https://registry.npmjs.org/supports-color/-/supports-color-7.2.0.tgz"
   integrity sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
@@ -9728,20 +9752,20 @@ terser-webpack-plugin@^5.1.3, terser-webpack-plugin@^5.3.1:
     serialize-javascript "^6.0.0"
     terser "^5.14.1"
 
-terser@^5.0.0:
-  version "5.15.0"
-  resolved "https://registry.npmjs.org/terser/-/terser-5.15.0.tgz"
-  integrity sha512-L1BJiXVmheAQQy+as0oF3Pwtlo4s3Wi1X2zNZ2NxOB4wx9bdS9Vk67XQENLFdLYGCK/Z2di53mTj/hBafR+dTA==
+terser@^5.10.0, terser@^5.14.1:
+  version "5.16.5"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.16.5.tgz#1c285ca0655f467f92af1bbab46ab72d1cb08e5a"
+  integrity sha512-qcwfg4+RZa3YvlFh0qjifnzBHjKGNbtDo9yivMqMFDy9Q6FSaQWSB/j1xKhsoUFJIqDOM3TsN6D5xbrMrFcHbg==
   dependencies:
     "@jridgewell/source-map" "^0.3.2"
     acorn "^8.5.0"
     commander "^2.20.0"
     source-map-support "~0.5.20"
 
-terser@^5.10.0, terser@^5.14.1:
-  version "5.16.5"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-5.16.5.tgz#1c285ca0655f467f92af1bbab46ab72d1cb08e5a"
-  integrity sha512-qcwfg4+RZa3YvlFh0qjifnzBHjKGNbtDo9yivMqMFDy9Q6FSaQWSB/j1xKhsoUFJIqDOM3TsN6D5xbrMrFcHbg==
+terser@^5.15.1:
+  version "5.16.1"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-5.16.1.tgz#5af3bc3d0f24241c7fb2024199d5c461a1075880"
+  integrity sha512-xvQfyfA1ayT0qdK47zskQgRZeWLoOQ8JQ6mIgRGVNwZKdQMU+5FkCBjmv4QjcrTzyZquRw2FVtlJSRUmMKQslw==
   dependencies:
     "@jridgewell/source-map" "^0.3.2"
     acorn "^8.5.0"
@@ -10249,10 +10273,10 @@ watchpack@^2.2.0, watchpack@^2.4.0:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-wc-compiler@~0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/wc-compiler/-/wc-compiler-0.6.1.tgz#acae127206c4fb028dccd530efa948c91efa7c20"
-  integrity sha512-riK9RNwus8U1O9VFjZ3Zph8nFGj6ivzWGQbWHZxkHkKbhS1/W/mwIw4e+20V9Uy8CsLy3u0j2HLDOxzAro5pJg==
+wc-compiler@~0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/wc-compiler/-/wc-compiler-0.8.0.tgz#1baadbdc3aff91ff1eba601e56effcb3d6dc5ea8"
+  integrity sha512-vkq9wcpMOTsIDgPvQYso01fQZTD2iGzKTVhO6AbbAz5bE8WUOvNAN9sPy56An26sVmMl/KNL2St5rVmFQ/lw9w==
   dependencies:
     acorn "^8.7.0"
     acorn-jsx "^5.3.2"
