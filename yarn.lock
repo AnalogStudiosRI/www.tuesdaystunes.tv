@@ -1600,10 +1600,10 @@
     p-limit "^3.1.0"
     readable-stream "^4.0.0"
 
-"@greenwood/cli@~0.28.0":
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/@greenwood/cli/-/cli-0.28.0.tgz#c4964622ab4b6759224fa425572e4b053e137fb4"
-  integrity sha512-vRUDGnfbyBBZCDPa2ShWyh8iZ1buD37okAqebKqcnum7u/tcjHiLd2AwMjrkihMSn2Oxobx9F2aD1QL7/E/AOQ==
+"@greenwood/cli@~0.28.1":
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/@greenwood/cli/-/cli-0.28.1.tgz#191cf27cee5d6beb6b3263cd2b7555c9fc8f0dd2"
+  integrity sha512-eCPT+AxiwmKP6YaP/nIoEKLUGU8Cnm85ZDCn36NP/GN7GCEfm/eOgl5G8ZthLOqrLTdsgjDcebcdVdIgl8WVaA==
   dependencies:
     "@rollup/plugin-commonjs" "^21.0.0"
     "@rollup/plugin-node-resolve" "^13.0.0"
@@ -1629,10 +1629,10 @@
     unified "^9.2.0"
     wc-compiler "~0.8.0"
 
-"@greenwood/plugin-postcss@~0.28.0":
-  version "0.28.0"
-  resolved "https://registry.yarnpkg.com/@greenwood/plugin-postcss/-/plugin-postcss-0.28.0.tgz#fd6ebebb9c675fcbcc4c62f79da8a394eaf6cdac"
-  integrity sha512-laDXCrpAUTkdf23ov3RJBXjQvji80Fd1l/ECweYZ21y3g+chFlRsd+AVnW/7DFKgAdefYXP3OIXWCLS/LlMnlQ==
+"@greenwood/plugin-postcss@~0.28.1":
+  version "0.28.1"
+  resolved "https://registry.yarnpkg.com/@greenwood/plugin-postcss/-/plugin-postcss-0.28.1.tgz#bed8874e8a5edfc3005b32c4b8a9a481b0cce3c9"
+  integrity sha512-HuZO0XpCGzYEULLeitEDLUrCxz8Ewwie+FLC7EgTg3oIcYcXY4tuOM6M3iwm2jR5IBsKfAgiXAzvoVhCOFTl6Q==
   dependencies:
     postcss "^8.3.11"
     postcss-import "^13.0.0"
