@@ -1,5 +1,11 @@
+import '../video-card/video-card.js';
+import { getVideos } from '../../services/youtube.js';
+
 export default class YouTubePlaylist extends HTMLElement {
-  connectedCallback() {
+  async connectedCallback() {
+    const offset = 0;
+    const videos = await getVideos(offset);
+    
     this.innerHTML = `
       <h2
         class="text-3xl text-center font-extrabold"
@@ -8,19 +14,17 @@ export default class YouTubePlaylist extends HTMLElement {
         Past Episodes
       </h2>
 
-      <div class="p-4 youtube-container">
-        <iframe
-          style="border-radius:12px"
-          src="https://www.youtube.com/embed?listType=playlist&list=PLrY8SmqJ5XZ_UvVurEvGg8i10g-cxMudZ"
-          width="100%"
-          height="500px"
-          title="Spotify Playlist"
-          frameBorder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
-      </div>
+      ${
+        // https://developers-dot-devsite-v2-prod.appspot.com/youtube/v3/docs/videos
+        videos.map((item, idx) => {
+          return `
+            <tt-video-card
+              title="${offset + idx + 1}) ${item.title}"
+              thumbnail="${item.thumbnails.standard.url}"
+            ></tt-video-card>
+          `;
+        }).join('')
+      }
     `;
   }
 }

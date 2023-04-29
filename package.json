@@ -25,12 +25,13 @@
     "lint": "ls-lint && yarn lint:js && yarn lint:css",
     "lint:js": "eslint \"*.{js,cjs,.mjs}\" \".storybook/*.{js,cjs}\" \"src/**/**/*.js\"",
     "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
-    "clean": "rimraf public/ .greenwood/ ./storybook-static"
+    "clean": "rimraf public/ .greenwood/ ./storybook-static",
+    "netlify": "netlify dev"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4",
-    "@greenwood/cli": "~0.28.0",
-    "@greenwood/plugin-postcss": "~0.28.0",
+    "@greenwood/cli": "~0.28.1",
+    "@greenwood/plugin-postcss": "~0.28.1",
     "@ls-lint/ls-lint": "^1.10.0",
     "@storybook/addon-actions": "^7.0.0-beta.61",
     "@storybook/addon-essentials": "^7.0.0-beta.61",
@@ -46,6 +47,7 @@
     "eslint-plugin-no-only-tests": "^3.1.0",
     "http-server": "^14.1.1",
     "lit": "^2.1.1",
+    "netlify-cli": "^13.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",

@@ -19,6 +19,45 @@
     <script type="module" data-gwd-opt="static" src="../components/footer/footer.js"></script>
     <script type="module" data-gwd-opt="static" src="../components/header/header.js"></script>
     <script type="module" src="../components/nav/nav.js"></script>
+    <script type="module" src="../components/video-card/video-card.js"></script>
+    <!--
+    This is breaking SSR prerender build, due to
+    1) document.location -> should use globalThis + optional chaining
+    2) (native?) Node fetch required a full qualified URL
+    3) (native?) API routes not available during prerender, or something else?
+    ```
+    TypeError [Error]: fetch failed
+    at Object.fetch (node:internal/deps/undici/undici:11118:11)
+    at async file:///Users/analogstudios/Workspace/analogstudios/repos/www.tuesdaystunes.tv/.greenwood/826237276.js:4:20 {
+    cause: Error: not implemented... yet...
+    ```
+
+    Not sure if / why this would be executing as a script block though when it's an HTML file?
+    ---
+    <script type="module">
+      const params = new URLSearchParams(globalThis.document?.location?.search);
+      const qs = params.has('name') ? `?name=${params.get('name')}` : '';
+      const data = await fetch(new URL(`/api/greeting${qs}`, import.meta.url)).then(resp => resp.json());
+
+      document.getElementById('greeting').textContent = data.message;
+    </script>
+    -->
+
+    <script>
+      globalThis.addEventListener('DOMContentLoaded', () => {
+        const page = 5;
+        let offset = 0;
+
+        globalThis.document.getElementById('load-yt').addEventListener('click', async () => {
+          console.debug('load more fragments!');
+          offset = offset += page;
+          const html = await fetch(`/api/fragment?offset=${offset}`).then(resp => resp.text());
+
+          console.debug({ html });
+          document.getElementsByTagName('tt-youtube-playlist')[0].insertAdjacentHTML('beforeend', html);
+        });
+      });
+    </script>
   </head>
 
   <body>
@@ -28,11 +67,15 @@
 
       <tt-nav></tt-nav>
 
+      <h1 id="greeting" style="text-align:center"></h1>
+
       <div
         class="bg-white rounded-lg drop-shadow-lg lg:p-8 m-auto mt-4 md:p-1 grid-cols-6"
       >
         <page-outlet></page-outlet>
       </div>
+
+      <button id="load-yt" style="text-align:center">Load More Episodes...</button>
 
       <tt-footer></tt-footer>
     </div>
