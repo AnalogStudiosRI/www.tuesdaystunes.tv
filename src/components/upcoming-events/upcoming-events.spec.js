@@ -41,9 +41,9 @@ describe('Components/Upcoming Events', () => {
   describe('Default Behavior', () => {
     before(async () => {
       events = document.createElement('tt-upcoming-events');
-  
+
       document.body.appendChild(events);
-  
+
       await events.updateComplete;
     });
 
@@ -64,9 +64,9 @@ describe('Components/Upcoming Events', () => {
     before(async () => {
       events = document.createElement('tt-upcoming-events');
       events.setAttribute('events', JSON.stringify(SINGLE_EVENT));
-  
+
       document.body.appendChild(events);
-  
+
       await events.updateComplete;
     });
 
@@ -103,9 +103,9 @@ describe('Components/Upcoming Events', () => {
     before(async () => {
       events = document.createElement('tt-upcoming-events');
       events.setAttribute('events', JSON.stringify(MULTIPLE_EVENTS));
-  
+
       document.body.appendChild(events);
-  
+
       await events.updateComplete;
 
       // 1, 3, 0, 2, 4
@@ -137,13 +137,13 @@ describe('Components/Upcoming Events', () => {
         const time = new Date(event.startTime);
         const month = time.getMonth();
         const monthKey = MONTH_INDEX_MAPPER[month];
-  
+
         if (!eventsByMonth.includes(monthKey)) {
           eventsByMonth.push(monthKey);
         }
       });
 
-      headings.forEach((heading, idx) => {  
+      headings.forEach((heading, idx) => {
         expect(heading.textContent).to.contain(eventsByMonth[idx]);
       });
     });
@@ -182,9 +182,9 @@ describe('Components/Upcoming Events', () => {
     before(async () => {
       events = document.createElement('tt-upcoming-events');
       events.setAttribute('events', JSON.stringify(NO_EVENTS));
-  
+
       document.body.appendChild(events);
-  
+
       await events.updateComplete;
     });
 

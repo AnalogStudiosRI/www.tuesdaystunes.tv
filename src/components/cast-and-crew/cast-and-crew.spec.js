@@ -23,7 +23,7 @@ describe('Components/Cast and Crew', () => {
       expect(castAndCrew).not.equal(undefined);
       expect(castAndCrew.querySelectorAll('.profiles').length).equal(1);
     });
-  
+
     it('should have the expected heading text', () => {
       const heading = castAndCrew.querySelectorAll('h2');
 
