@@ -12,7 +12,7 @@ describe('Components/Footer', () => {
     await footer.updateComplete;
   });
 
-  describe('Default Behavior', () => {    
+  describe('Default Behavior', () => {
     it('should not be null', () => {
       expect(footer).not.equal(undefined);
       expect(footer.querySelectorAll('footer').length).equal(1);
@@ -27,7 +27,7 @@ describe('Components/Footer', () => {
       links = footer.querySelectorAll('footer a.social-link');
       logos = document.querySelectorAll('footer a.social-link img');
     });
-    
+
     it('should have the expected social links and logos in the footer', () => {
       expect(links.length).to.equal(3);
       expect(logos.length).to.equal(3);
