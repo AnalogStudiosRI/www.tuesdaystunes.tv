@@ -65,3 +65,8 @@ export default class Home extends HTMLElement {
     `;
   }
 }
+
+export const tag = 'app-page-index';
+
+// TOOD use tag name as a variable
+customElements.define('app-page-index', Home);

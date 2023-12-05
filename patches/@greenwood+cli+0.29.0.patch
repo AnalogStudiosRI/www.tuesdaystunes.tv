@@ -1,0 +1,119 @@
+diff --git a/node_modules/@greenwood/cli/src/lib/execute-route-module.js b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+index 483696f..bbd6355 100644
+--- a/node_modules/@greenwood/cli/src/lib/execute-route-module.js
++++ b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
+@@ -9,10 +9,31 @@ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender
+   };
+ 
+   if (prerender) {
+-    const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
+-    const { html } = await renderFromHTML(htmlContents, scriptURLs);
++    console.log({ page, moduleUrl });
++    if (moduleUrl) {
++      const { id } = page;
++      const module = await import(moduleUrl).then(module => module);
++      const { tag } = module;;
+ 
+-    data.html = html;
++      // TODO what if not using a template with <content-outlet>?
++      htmlContents = htmlContents.replace(/\<content-outlet>(.*)<\/content-outlet>/s, `<${tag}></${tag}>`);
++      
++      // TOOD this doesn't work because by itself WCC only uses definition it has loaded
++      customElements.define(tag, module.default);
++
++      const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
++      const { html } = await renderFromHTML(htmlContents, scriptURLs, [{
++        tag,
++        moduleUrl,
++      }]);
++      data.html = html;
++    } else {
++      const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
++      const { html } = await renderFromHTML(htmlContents, scriptURLs);
++  
++      data.html = html;
++    }
++    console.log('==========================')
+   } else {
+     const module = await import(moduleUrl).then(module => module);
+     const { prerender = false, getTemplate = null, getBody = null, getFrontmatter = null } = module;
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/prerender.js b/node_modules/@greenwood/cli/src/lifecycles/prerender.js
+index 6eb1a34..cba580c 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/prerender.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/prerender.js
+@@ -50,7 +50,7 @@ function getPluginInstances (compilation) {
+ 
+ async function preRenderCompilationWorker(compilation, workerPrerender) {
+   const pages = compilation.graph.filter(page => !page.isSSR || (page.isSSR && page.prerender) || (page.isSSR && compilation.config.prerender));
+-  const { scratchDir } = compilation.context;
++  const { scratchDir, pagesDir } = compilation.context;
+   const plugins = getPluginInstances(compilation);
+ 
+   console.info('pages to generate', `\n ${pages.map(page => page.route).join('\n ')}`);
+@@ -63,25 +63,33 @@ async function preRenderCompilationWorker(compilation, workerPrerender) {
+     const url = new URL(`http://localhost:${compilation.config.port}${route}`);
+     const request = new Request(url);
+ 
++    // 1) get just the static parts / template
++    // 2) load the moduleURL for the page and get the export
++    // 4) replace <content-outlet></content-outlet> with <app-page>
++    // 3) create a customElement.define for that export
++    // 6) send the whole thing to renderFromHTML
+     let body = await (await servePage(url, request, plugins)).text();
+     body = await (await interceptPage(url, request, plugins, body)).text();
+ 
+     await createOutputDirectory(route, new URL(outputPathUrl.href.replace('index.html', '')));
+ 
++    const pageScript = page.isSSR ? [new URL(page.filename, pagesDir)] : [];
+     const scripts = resources
+       .map(resource => compilation.resources.get(resource))
+       .filter(resource => resource.type === 'script')
+       .map(resource => resource.sourcePathURL.href);
+ 
++    // TODO feel like we're doing double duty here with serve, intercept, and SSR?
++    // server already _does_ SSR
+     body = await new Promise((resolve, reject) => {
+       pool.runTask({
+         executeModuleUrl: workerPrerender.executeModuleUrl.href,
+-        modulePath: null,
++        moduleUrl: page.isSSR ? pageScript[0].href : null,
+         compilation: JSON.stringify(compilation),
+         page: JSON.stringify(page),
+         prerender: true,
+         htmlContents: body,
+-        scripts: JSON.stringify(scripts)
++        scripts: JSON.stringify([...pageScript, ...scripts])
+       }, (err, result) => {
+         if (err) {
+           return reject(err);
+diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+index 8f06225..9853de9 100644
+--- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
++++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
+@@ -104,7 +104,7 @@ class StandardHtmlResource extends ResourceInterface {
+       }
+     }
+ 
+-    if (matchingRoute.isSSR) {
++    if (matchingRoute.isSSR && process.env.__GWD_COMMAND__ === 'develop') {
+       const routeModuleLocationUrl = new URL(`./${matchingRoute.filename}`, pagesDir);
+       const routeWorkerUrl = this.compilation.config.plugins.find(plugin => plugin.type === 'renderer').provider().executeModuleUrl;
+ 
+@@ -202,11 +202,12 @@ class StandardHtmlResource extends ResourceInterface {
+     }
+ 
+     // give the user something to see so they know it works, if they have no content
+-    if (body.indexOf('<content-outlet></content-outlet>') > 0) {
+-      body = body.replace('<content-outlet></content-outlet>', `
+-        <h1>Welcome to Greenwood!</h1>
+-      `);
+-    }
++    // TODO maybe we should actually remove this?
++    // if (body.indexOf('<content-outlet></content-outlet>') > 0) {
++    //   body = body.replace('<content-outlet></content-outlet>', `
++    //     <h1>Welcome to Greenwood!</h1>
++    //   `);
++    // }
+ 
+     return new Response(body, {
+       headers: new Headers({
