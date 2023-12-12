@@ -1,44 +1,56 @@
 diff --git a/node_modules/@greenwood/cli/src/lib/execute-route-module.js b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
-index 483696f..bbd6355 100644
+index 483696f..3e7fad6 100644
 --- a/node_modules/@greenwood/cli/src/lib/execute-route-module.js
 +++ b/node_modules/@greenwood/cli/src/lib/execute-route-module.js
-@@ -9,10 +9,31 @@ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender
+@@ -9,11 +9,43 @@ async function executeRouteModule({ moduleUrl, compilation, page = {}, prerender
    };
  
    if (prerender) {
 -    const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
 -    const { html } = await renderFromHTML(htmlContents, scriptURLs);
++    console.log('PRERENDER PATH')
 +    console.log({ page, moduleUrl });
-+    if (moduleUrl) {
-+      const { id } = page;
-+      const module = await import(moduleUrl).then(module => module);
-+      const { tag } = module;;
  
 -    data.html = html;
-+      // TODO what if not using a template with <content-outlet>?
-+      htmlContents = htmlContents.replace(/\<content-outlet>(.*)<\/content-outlet>/s, `<${tag}></${tag}>`);
-+      
-+      // TOOD this doesn't work because by itself WCC only uses definition it has loaded
-+      customElements.define(tag, module.default);
++    if (moduleUrl) {
++      const module = await import(moduleUrl).then(module => module);
++      // TODO is ths just the same as without prerender
++      const { html } = await renderToString(new URL(moduleUrl), false, request);
 +
-+      const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
-+      const { html } = await renderFromHTML(htmlContents, scriptURLs, [{
-+        tag,
-+        moduleUrl,
-+      }]);
-+      data.html = html;
-+    } else {
++      // const { id } = page;
++      // const { tag } = module;
++
++      // // TODO what if not using a template with <content-outlet>?
++      // htmlContents = htmlContents.replace(/\<content-outlet>(.*)<\/content-outlet>/s, `<${tag}></${tag}>`);
++      
++      // // TOOD this doesn't work because by itself WCC only uses definition it has loaded
++      // customElements.define(tag, module.default);
++
++      // const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
++      // const { html } = await renderFromHTML(htmlContents, scriptURLs, [{
++      //   tag,
++      //   moduleUrl,
++      // }]);
++      console.log('SSR BODY');
++      data.body = html;
++    }
++    
++    if (htmlContents) {
++      console.log('SSR TEMPLATE', { scripts });
 +      const scriptURLs = scripts.map(scriptFile => new URL(scriptFile));
 +      const { html } = await renderFromHTML(htmlContents, scriptURLs);
 +  
-+      data.html = html;
++      console.log({ html });
++      data.template = html;
 +    }
 +    console.log('==========================')
    } else {
++    console.log('NO PRERENDER PATH')
      const module = await import(moduleUrl).then(module => module);
      const { prerender = false, getTemplate = null, getBody = null, getFrontmatter = null } = module;
+ 
 diff --git a/node_modules/@greenwood/cli/src/lifecycles/prerender.js b/node_modules/@greenwood/cli/src/lifecycles/prerender.js
-index 6eb1a34..cba580c 100644
+index 6eb1a34..d070716 100644
 --- a/node_modules/@greenwood/cli/src/lifecycles/prerender.js
 +++ b/node_modules/@greenwood/cli/src/lifecycles/prerender.js
 @@ -50,7 +50,7 @@ function getPluginInstances (compilation) {
@@ -50,7 +62,7 @@ index 6eb1a34..cba580c 100644
    const plugins = getPluginInstances(compilation);
  
    console.info('pages to generate', `\n ${pages.map(page => page.route).join('\n ')}`);
-@@ -63,25 +63,33 @@ async function preRenderCompilationWorker(compilation, workerPrerender) {
+@@ -63,33 +63,41 @@ async function preRenderCompilationWorker(compilation, workerPrerender) {
      const url = new URL(`http://localhost:${compilation.config.port}${route}`);
      const request = new Request(url);
  
@@ -70,36 +82,339 @@ index 6eb1a34..cba580c 100644
        .filter(resource => resource.type === 'script')
        .map(resource => resource.sourcePathURL.href);
  
+-    body = await new Promise((resolve, reject) => {
+-      pool.runTask({
+-        executeModuleUrl: workerPrerender.executeModuleUrl.href,
+-        modulePath: null,
+-        compilation: JSON.stringify(compilation),
+-        page: JSON.stringify(page),
+-        prerender: true,
+-        htmlContents: body,
+-        scripts: JSON.stringify(scripts)
+-      }, (err, result) => {
+-        if (err) {
+-          return reject(err);
+-        }
+-
+-        return resolve(result.html);
+-      });
+-    });
 +    // TODO feel like we're doing double duty here with serve, intercept, and SSR?
 +    // server already _does_ SSR
-     body = await new Promise((resolve, reject) => {
-       pool.runTask({
-         executeModuleUrl: workerPrerender.executeModuleUrl.href,
--        modulePath: null,
-+        moduleUrl: page.isSSR ? pageScript[0].href : null,
-         compilation: JSON.stringify(compilation),
-         page: JSON.stringify(page),
-         prerender: true,
-         htmlContents: body,
--        scripts: JSON.stringify(scripts)
-+        scripts: JSON.stringify([...pageScript, ...scripts])
-       }, (err, result) => {
-         if (err) {
-           return reject(err);
++    // body = await new Promise((resolve, reject) => {
++    //   pool.runTask({
++    //     executeModuleUrl: workerPrerender.executeModuleUrl.href,
++    //     moduleUrl: page.isSSR ? pageScript[0].href : null,
++    //     compilation: JSON.stringify(compilation),
++    //     page: JSON.stringify(page),
++    //     prerender: true,
++    //     htmlContents: body,
++    //     scripts: JSON.stringify([...pageScript, ...scripts])
++    //   }, (err, result) => {
++    //     if (err) {
++    //       return reject(err);
++    //     }
++
++    //     return resolve(result.html);
++    //   });
++    // });
+ 
+     await fs.writeFile(outputPathUrl, body);
+ 
 diff --git a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
-index 8f06225..9853de9 100644
+index 8f06225..dfdecff 100644
 --- a/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
 +++ b/node_modules/@greenwood/cli/src/plugins/resource/plugin-standard-html.js
-@@ -104,7 +104,7 @@ class StandardHtmlResource extends ResourceInterface {
+@@ -37,7 +37,7 @@ class StandardHtmlResource extends ResourceInterface {
+   async serve(url, request) {
+     const { config, context } = this.compilation;
+     const { pagesDir, userWorkspace } = context;
+-    const { interpolateFrontmatter } = config;
++    const { interpolateFrontmatter, prerender } = config;
+     const { pathname } = url;
+     const isSpaRoute = this.compilation.graph.find(node => node.isSPA);
+     const matchingRoute = this.compilation.graph.find((node) => node.route === pathname) || {};
+@@ -54,6 +54,16 @@ class StandardHtmlResource extends ResourceInterface {
+     let ssrFrontmatter;
+     let processedMarkdown = null;
+ 
++    /*
++     * needs:
++     *   - frontmatter (already obtained during graph for SSR?), 
++     *   - template
++     *   - SSR body
++     *   - prerender
++     *   - <content-outlet> / <page-outlet>
++     * 
++     */
++
+     if (matchingRoute.external) {
+       template = matchingRoute.template || template;
+     }
+@@ -104,7 +114,25 @@ class StandardHtmlResource extends ResourceInterface {
        }
      }
  
 -    if (matchingRoute.isSSR) {
-+    if (matchingRoute.isSSR && process.env.__GWD_COMMAND__ === 'develop') {
++    if (isSpaRoute) {
++      body = await fs.readFile(new URL(`./${isSpaRoute.filename}`, userWorkspace), 'utf-8');
++    }
++
++    // get context plugins
++    const contextPlugins = this.compilation.config.plugins.filter((plugin) => {
++      return plugin.type === 'context';
++    }).map((plugin) => {
++      return plugin.provider(this.compilation);
++    });
++
++    console.log('0000', { body, matchingRoute });
++    body = ssrTemplate ? ssrTemplate : await getPageTemplate(filePath, context, template, contextPlugins)
++    console.log('1111', { body });
++    body = await getAppTemplate(body, context, customImports, contextPlugins, config.devServer.hud, title);
++    console.log('2222', { body });
++    body = await getUserScripts(body, this.compilation);
++
++    if (matchingRoute.isSSR || (process.env.__GWD_COMMAND__ === 'build' && prerender)) {
        const routeModuleLocationUrl = new URL(`./${matchingRoute.filename}`, pagesDir);
        const routeWorkerUrl = this.compilation.config.plugins.find(plugin => plugin.type === 'renderer').provider().executeModuleUrl;
  
-@@ -202,11 +202,12 @@ class StandardHtmlResource extends ResourceInterface {
+@@ -112,28 +140,33 @@ class StandardHtmlResource extends ResourceInterface {
+         const worker = new Worker(new URL('../../lib/ssr-route-worker.js', import.meta.url));
+ 
+         worker.on('message', (result) => {
++          // console.log({ result })
+           if (result.template) {
+             ssrTemplate = result.template;
+           }
+-          if (result.body) {
+-            ssrBody = result.body;
++
++          if (result.body || result.html) {
++            ssrBody = result.body || result.html;
+           }
+-          if (result.frontmatter) {
+-            ssrFrontmatter = result.frontmatter;
+ 
+-            if (ssrFrontmatter.title) {
+-              title = ssrFrontmatter.title;
+-              frontMatter.title = ssrFrontmatter.title;
+-            }
++          // TODO - I think this is already available on the page object
++          // since frontmatter gets collected during the graph cycle
++          // if (result.frontmatter) {
++          //   ssrFrontmatter = result.frontmatter;
+ 
+-            if (ssrFrontmatter.template) {
+-              template = ssrFrontmatter.template;
+-            }
++          //   if (ssrFrontmatter.title) {
++          //     title = ssrFrontmatter.title;
++          //     frontMatter.title = ssrFrontmatter.title;
++          //   }
+ 
+-            if (ssrFrontmatter.imports) {
+-              customImports = customImports.concat(ssrFrontmatter.imports);
+-            }
+-          }
++          //   if (ssrFrontmatter.template) {
++          //     template = ssrFrontmatter.template;
++          //   }
++
++          //   if (ssrFrontmatter.imports) {
++          //     customImports = customImports.concat(ssrFrontmatter.imports);
++          //   }
++          // }
+           resolve();
+         });
+         worker.on('error', reject);
+@@ -143,31 +176,34 @@ class StandardHtmlResource extends ResourceInterface {
+           }
+         });
+ 
++        const pageScript = matchingRoute.isSSR ? [new URL(matchingRoute.filename, pagesDir)] : [];
++        let scripts = [];
++        
++        if (process.env.__GWD_COMMAND__ === 'build') {
++          const { resources } = matchingRoute;
++          // console.log({ resources });
++
++          scripts = resources
++            .map(resource => this.compilation.resources.get(resource))
++            .filter(resource => resource.type === 'script')
++            .map(resource => resource.sourcePathURL.href);
++        }
++
+         worker.postMessage({
+           executeModuleUrl: routeWorkerUrl.href,
+-          moduleUrl: routeModuleLocationUrl.href,
++          moduleUrl: matchingRoute.isSSR ? routeModuleLocationUrl.href : undefined,
+           compilation: JSON.stringify(this.compilation),
+           page: JSON.stringify(matchingRoute),
+-          request: await requestAsObject(request)
++          request: await requestAsObject(request),
++          prerender: (matchingRoute.prerender || prerender) && process.env.__GWD_COMMAND__ === 'build',
++          scripts: JSON.stringify([...pageScript, ...scripts]),
++          // scripts: JSON.stringify(pageScript),
++          htmlContents: body
+         });
+       });
+     }
+ 
+-    // get context plugins
+-    const contextPlugins = this.compilation.config.plugins.filter((plugin) => {
+-      return plugin.type === 'context';
+-    }).map((plugin) => {
+-      return plugin.provider(this.compilation);
+-    });
+-
+-    if (isSpaRoute) {
+-      body = await fs.readFile(new URL(`./${isSpaRoute.filename}`, userWorkspace), 'utf-8');
+-    } else {
+-      body = ssrTemplate ? ssrTemplate : await getPageTemplate(filePath, context, template, contextPlugins);
+-    }
+-
+-    body = await getAppTemplate(body, context, customImports, contextPlugins, config.devServer.hud, title);
+-    body = await getUserScripts(body, this.compilation);
++    console.log('3333', { body });
+ 
+     if (processedMarkdown) {
+       const wrappedCustomElementRegex = /<p><[a-zA-Z]*-[a-zA-Z](.*)>(.*)<\/[a-zA-Z]*-[a-zA-Z](.*)><\/p>/g;
+@@ -189,10 +225,133 @@ class StandardHtmlResource extends ResourceInterface {
+       body = body.replace(/\<content-outlet>(.*)<\/content-outlet>/s, processedMarkdown.contents.replace(/\$/g, '$$$'));
+     } else if (matchingRoute.external) {
+       body = body.replace(/\<content-outlet>(.*)<\/content-outlet>/s, matchingRoute.body);
+-    } else if (ssrBody) {
++    } else if (matchingRoute.isSSR && ssrTemplate) {
++      // .replace(/\<content-outlet>(.*)<\/content-outlet>/s, `<${tag}></${tag}>`)
++      body = ssrTemplate.replace(/\<content-outlet>(.*)<\/content-outlet>/s, ssrBody);
++      // const routeModuleLocationUrl = new URL(`./${matchingRoute.filename}`, pagesDir);
++      // const routeWorkerUrl = this.compilation.config.plugins.find(plugin => plugin.type === 'renderer').provider().executeModuleUrl;
++
++      // await new Promise(async (resolve, reject) => {
++      //   const worker = new Worker(new URL('../../lib/ssr-route-worker.js', import.meta.url));
++
++      //   worker.on('message', (result) => {
++      //     // console.log({ result })
++      //     if (result.template) {
++      //       ssrTemplate = result.template;
++      //     }
++
++      //     if (result.body || result.html) {
++      //       body = result.body || result.html;
++      //     }
++
++      //     // TODO - I think this is already available on the page object
++      //     // since frontmatter gets collected during the graph cycle
++      //     // if (result.frontmatter) {
++      //     //   ssrFrontmatter = result.frontmatter;
++
++      //     //   if (ssrFrontmatter.title) {
++      //     //     title = ssrFrontmatter.title;
++      //     //     frontMatter.title = ssrFrontmatter.title;
++      //     //   }
++
++      //     //   if (ssrFrontmatter.template) {
++      //     //     template = ssrFrontmatter.template;
++      //     //   }
++
++      //     //   if (ssrFrontmatter.imports) {
++      //     //     customImports = customImports.concat(ssrFrontmatter.imports);
++      //     //   }
++      //     // }
++      //     resolve();
++      //   });
++      //   worker.on('error', reject);
++      //   worker.on('exit', (code) => {
++      //     if (code !== 0) {
++      //       reject(new Error(`Worker stopped with exit code ${code}`));
++      //     }
++      //   });
++
++      //   const pageScript = matchingRoute.isSSR ? [new URL(matchingRoute.filename, pagesDir)] : [];
++      //   let scripts = [];
++        
++      //   if (process.env.__GWD_COMMAND__ === 'build') {
++      //     const { resources } = matchingRoute;
++      //     // console.log({ resources });
++
++      //     scripts = resources
++      //       .map(resource => this.compilation.resources.get(resource))
++      //       .filter(resource => resource.type === 'script')
++      //       .map(resource => resource.sourcePathURL.href);
++      //   }
++
++      //   worker.postMessage({
++      //     executeModuleUrl: routeWorkerUrl.href,
++      //     moduleUrl: routeModuleLocationUrl.href,
++      //     compilation: JSON.stringify(this.compilation),
++      //     page: JSON.stringify(matchingRoute),
++      //     request: await requestAsObject(request),
++      //     // prerender: matchingRoute.prerender || prerender,
++      //     // scripts: JSON.stringify([...pageScript, ...scripts]),
++      //     scripts: JSON.stringify(pageScript),
++      //     // htmlContents: body
++      //   });
++      // });
++    } else if (matchingRoute.isSSR && ssrBody) {
+       body = body.replace(/\<content-outlet>(.*)<\/content-outlet>/s, ssrBody);
++    } else if(!matchingRoute.isSSR && ssrTemplate) {
++      body = ssrTemplate;
+     }
+ 
++    console.log('44444', { body });
++    // TODO 
++    console.log('========================');
++
++    // if (process.env.__GWD_COMMAND__ === 'build') {    
++    //   // const routeModuleLocationUrl = new URL(`./${matchingRoute.filename}`, pagesDir);
++    //   const routeWorkerUrl = this.compilation.config.plugins.find(plugin => plugin.type === 'renderer').provider().executeModuleUrl;
++
++    //   await new Promise(async (resolve, reject) => {
++    //     const worker = new Worker(new URL('../../lib/ssr-route-worker.js', import.meta.url));
++  
++    //     worker.on('message', (result) => {
++    //       console.log({ result }) 
++    //       if (result.body || result.html) {
++    //         body = result.body || result.html;
++    //       }
++    //       resolve();
++    //     });
++    //     worker.on('error', reject);
++    //     worker.on('exit', (code) => {
++    //       if (code !== 0) {
++    //         reject(new Error(`Worker stopped with exit code ${code}`));
++    //       }
++    //     });
++  
++    //     const pageScript = matchingRoute.isSSR ? [new URL(matchingRoute.filename, pagesDir)] : [];
++    //     let scripts = [];
++    //     const { resources } = matchingRoute;
++    //     console.log({ resources });
++
++    //     scripts = resources
++    //       .map(resource => this.compilation.resources.get(resource))
++    //       .filter(resource => resource.type === 'script')
++    //       .map(resource => resource.sourcePathURL.href);
++  
++    //     worker.postMessage({
++    //       executeModuleUrl: routeWorkerUrl.href,
++    //       // moduleUrl: routeModuleLocationUrl.href,
++    //       compilation: JSON.stringify(this.compilation),
++    //       page: JSON.stringify(matchingRoute),
++    //       request: await requestAsObject(request),
++    //       prerender: matchingRoute.prerender || prerender,
++    //       scripts: JSON.stringify(scripts),
++    //       htmlContents: body
++    //     });
++    //   });
++    // }
++
++    console.log('========================');
++
+     if (interpolateFrontmatter) {
+       for (const fm in frontMatter) {
+         const interpolatedFrontmatter = '\\$\\{globalThis.page.' + fm + '\\}';
+@@ -202,11 +361,12 @@ class StandardHtmlResource extends ResourceInterface {
      }
  
      // give the user something to see so they know it works, if they have no content
