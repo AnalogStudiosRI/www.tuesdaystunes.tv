@@ -29,8 +29,8 @@ describe('Components/Footer', () => {
     });
 
     it('should have the expected social links and logos in the footer', () => {
-      expect(links.length).to.equal(3);
-      expect(logos.length).to.equal(3);
+      expect(links.length).to.equal(4);
+      expect(logos.length).to.equal(4);
     });
 
     it('should have the expected Facebook link and logo in the footer', () => {
@@ -52,6 +52,18 @@ describe('Components/Footer', () => {
 
       expect(youtubeLink.length).to.equal(1);
       expect(youtubeLink[0].getAttribute('title')).to.equal(`Visit our ${name} page`);
+
+      expect(youtubeLogo.length).to.equal(1);
+      expect(youtubeLogo[0].getAttribute('alt')).to.equal(`${name} Logo`);
+    });
+
+    it('should have the expected Instagram link and logo in the footer', () => {
+      const name = 'Instagram';
+      const instagramLink = Array.from(links).filter(link => link.getAttribute('href').indexOf(`${name.toLowerCase()}.com`) >= 0);
+      const youtubeLogo = Array.from(logos).filter(logo => logo.getAttribute('src').indexOf(`${name.toLowerCase()}.svg`) >= 0);
+
+      expect(instagramLink.length).to.equal(1);
+      expect(instagramLink[0].getAttribute('title')).to.equal(`Visit our ${name} page`);
 
       expect(youtubeLogo.length).to.equal(1);
       expect(youtubeLogo[0].getAttribute('alt')).to.equal(`${name} Logo`);

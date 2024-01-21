@@ -8,6 +8,9 @@ export default class Footer extends HTMLElement {
       name: 'Facebook',
       url: 'https://www.facebook.com/Tuesdays-Tunes-111968014950570'
     }, {
+      name: 'Instagram',
+      url: 'https://www.instagram.com/tuesdaystunestvri/'
+    }, {
       name: 'Spotify',
       url: 'https://open.spotify.com/playlist/1jOFrovuxCGulkGdUhR5f7'
     }];
