@@ -10,16 +10,15 @@ This is the frontend repo for the [Tuesday's Tunes website](https://www.tuesdays
 
 After cloning the repo, do the following to get up and running
 1. Install [NodeJS](https://nodejs.org/en/) (LTS) or run [`nvm use`](https://github.com/nvm-sh/nvm)
-1. Install [Yarn](https://yarnpkg.com/en/) (>= 1.x)
-1. Run `yarn install`
+1. Run `npm ci`
 
 ## Development
 
 See _package.json_ for all options:
-- `yarn dev` - Start a local development server with file watching, live reload, etc
-- `yarn serve` - Build the site for production and start a server locally (useful for a local demo)
-- `yarn test:tdd` - Run tests in watch mode
-- `yarn story:dev` - Run Storybook for development
+- `npm run dev` - Start a local development server with file watching, live reload, etc
+- `npm run serve` - Build the site for production and start a server locally (useful for a local demo)
+- `npm run test:tdd` - Run tests in watch mode
+- `npm run story:dev` - Run Storybook for development
 
 > _Hosted Storybook docs available through [GitHub Pages](http://analogstudiosri.github.io/www.tuesdaystunes.tv).  (Make sure to leave off the trailing slash!)_
 

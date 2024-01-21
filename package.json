@@ -21,8 +21,8 @@
     "story:build": "storybook build",
     "story:serve": "storybook build && http-server ./storybook-static",
     "test": "wtr",
-    "test:tdd": "yarn test --watch",
-    "lint": "ls-lint && yarn lint:js && yarn lint:css",
+    "test:tdd": "npm run test -- --watch",
+    "lint": "ls-lint && npm run lint:js && npm run lint:css",
     "lint:js": "eslint \"*.{js,cjs,.mjs}\" \".storybook/*.{js,cjs}\" \"src/**/**/*.js\"",
     "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
     "clean": "rimraf public/ .greenwood/ ./storybook-static"

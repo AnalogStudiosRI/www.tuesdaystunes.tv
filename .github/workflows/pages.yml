@@ -20,11 +20,11 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        yarn install --frozen-lockfile
+        npm ci
 
     - name: Build
       run: |
-        yarn clean && yarn story:build
+        npm run story:build
 
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
