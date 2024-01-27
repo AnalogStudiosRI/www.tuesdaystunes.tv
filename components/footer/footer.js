@@ -11,6 +11,9 @@ export default class Footer extends HTMLElement {
       name: 'Instagram',
       url: 'https://www.instagram.com/tuesdaystunestvri/'
     }, {
+      name: 'TikTok',
+      url: 'https://www.tiktok.com/@tuesdaystunestv/'
+    }, {
       name: 'Spotify',
       url: 'https://open.spotify.com/playlist/1jOFrovuxCGulkGdUhR5f7'
     }];
