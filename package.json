@@ -26,7 +26,8 @@
     "test:tdd": "npm run test -- --watch",
     "lint": "ls-lint && npm run lint:js && npm run lint:css",
     "lint:js": "eslint",
-    "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\""
+    "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
+    "preinstall": "patch-package"
   },
   "devDependencies": {
     "@double-great/stylelint-a11y": "^3.0.3",
@@ -50,6 +51,7 @@
     "globals": "^15.10.0",
     "http-server": "^14.1.1",
     "lit": "^2.1.1",
+    "patch-package": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.0-beta.61",
