@@ -18,6 +18,7 @@
     "dev": "npm run gw -- develop",
     "build": "npm run gw -- build",
     "serve": "greenwood serve",
+    "start": "npm run clean && npm run build && npm run serve",
     "story:dev": "start-storybook -p 6006",
     "story:build": "build-storybook",
     "story:serve": "build-storybook && http-server ./storybook-static",
