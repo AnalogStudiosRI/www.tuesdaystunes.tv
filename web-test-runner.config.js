@@ -2,6 +2,7 @@ import { defaultReporter } from '@web/test-runner';
 import { junitReporter } from '@web/test-runner-junit-reporter';
 import fs from 'fs/promises';
 import path from 'path';
+import { greenwoodPluginImportSvg } from './plugin-import-svg.js';
 
 // create a direct instance of ImportSvgResource
 const importSvgResource = greenwoodPluginImportSvg()[0].provider({});
