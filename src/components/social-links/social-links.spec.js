@@ -12,7 +12,7 @@ describe('Components/Social Links', () => {
     await socialLinks.updateComplete;
   });
 
-  describe('Default Behavior', () => {    
+  describe('Default Behavior', () => {
     it('should not be null', () => {
       expect(socialLinks).not.equal(undefined);
       expect(socialLinks.querySelectorAll('div.social-links').length).equal(1);
@@ -27,7 +27,7 @@ describe('Components/Social Links', () => {
       links = socialLinks.querySelectorAll('div a.social-link');
       logos = socialLinks.querySelectorAll('div a.social-link svg');
     });
-    
+
     it('should have the expected social links and logos in the container', () => {
       expect(links.length).to.equal(3);
       expect(logos.length).to.equal(3);
