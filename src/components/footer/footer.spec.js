@@ -19,7 +19,7 @@ describe('Components/Footer', () => {
     });
   });
 
-  describe('Social Links', () => {    
+  describe('Social Links', () => {
     it('should have the <tt-social-links> component in the footer', () => {
       expect(footer.querySelectorAll('tt-social-links').length).equal(1);
     });
