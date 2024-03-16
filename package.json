@@ -14,9 +14,11 @@
     "url": "git+https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv.git"
   },
   "scripts": {
-    "dev": "greenwood develop",
-    "build": "NODE_ENV=production greenwood build",
-    "serve": "NODE_ENV=production greenwood build && greenwood serve",
+    "gw": "node --experimental-loader ./node_modules/@greenwood/cli/src/loader.js ./node_modules/.bin/greenwood",
+    "dev": "npm run gw -- develop",
+    "build": "npm run gw -- build",
+    "serve": "greenwood serve",
+    "start": "npm run clean && npm run build && npm run serve",
     "story:dev": "storybook dev -p 6006",
     "story:build": "storybook build",
     "story:serve": "storybook build && http-server ./storybook-static",
@@ -25,12 +27,13 @@
     "lint": "ls-lint && npm run lint:js && npm run lint:css",
     "lint:js": "eslint \"*.{js,cjs,.mjs}\" \".storybook/*.{js,cjs}\" \"src/**/**/*.js\"",
     "lint:css": "stylelint \"./src/**/*.js\", \"./src/**/*.css\"",
-    "clean": "rimraf public/ .greenwood/ ./storybook-static"
+    "clean": "rimraf public/ .greenwood/ ./storybook-static",
+    "preinstall": "patch-package"
   },
   "devDependencies": {
     "@esm-bundle/chai": "^4.3.4",
-    "@greenwood/cli": "~0.29.0",
-    "@greenwood/plugin-postcss": "~0.29.0",
+    "@greenwood/cli": "~0.30.0-alpha.0",
+    "@greenwood/plugin-postcss": "~0.30.0-alpha.0",
     "@ls-lint/ls-lint": "^1.10.0",
     "@storybook/addon-actions": "^7.0.0-beta.61",
     "@storybook/addon-essentials": "^7.0.0-beta.61",
@@ -46,6 +49,7 @@
     "eslint-plugin-no-only-tests": "^3.1.0",
     "http-server": "^14.1.1",
     "lit": "^2.1.1",
+    "patch-package": "^8.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rimraf": "^3.0.2",
