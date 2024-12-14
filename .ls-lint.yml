@@ -21,3 +21,4 @@ ignore:
   - public
   - reports
   - storybook-static
+  - .postcssrc.js
