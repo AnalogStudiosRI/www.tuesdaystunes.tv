@@ -6,5 +6,5 @@
   skip_processing = true
 
 [build.environment]
-  NODE_VERSION = "18.12.1"
+  NODE_VERSION = "22.x"
   TZ = "America/New_York"

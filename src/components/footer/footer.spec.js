@@ -105,7 +105,7 @@ describe('Components/Footer', () => {
 
       // TODO actually get this match against a regex, e.g. to.match(/^Tuesday's Tunes @\d{4}$/)
       expect(copyright.length).to.equal(1);
-      expect(copyright[0].textContent).to.contain('Analog Studios \/ TuesdaysTunes.tv');
+      expect(copyright[0].textContent).to.contain('Analog Studios / TuesdaysTunes.tv');
     });
   });
 
