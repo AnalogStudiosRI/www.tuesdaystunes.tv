@@ -43,7 +43,6 @@ export default class UpcomingEvents extends HTMLElement {
       });
     });
 
-    /* eslint-disable indent */
     this.innerHTML = `
       <div class="upcoming-events">
         <h2
