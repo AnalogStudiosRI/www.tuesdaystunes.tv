@@ -1,0 +1,30 @@
+diff --git a/node_modules/@greenwood/cli/src/lifecycles/copy.js b/node_modules/@greenwood/cli/src/lifecycles/copy.js
+index 070adc0..5cc4ee7 100644
+--- a/node_modules/@greenwood/cli/src/lifecycles/copy.js
++++ b/node_modules/@greenwood/cli/src/lifecycles/copy.js
+@@ -45,13 +45,21 @@ async function copyDirectory(fromUrl, toUrl, projectDirectory) {
+         );
+         const isDirectory = (await fs.stat(fileUrl)).isDirectory();
+ 
+-        if (isDirectory && !(await checkResourceExists(targetUrl))) {
+-          await fs.mkdir(targetUrl, {
++        // eject early, we will make directories on the fly as we copy over files
++        // since we are copying recursively and concurrently
++        if (isDirectory) {
++          return;
++        }
++
++        const trimmedHrefDir = new URL(`${targetUrl.href.split('/').slice(0, -1).join('/')}/`);
++
++        if (!(await checkResourceExists(trimmedHrefDir))) {
++          await fs.mkdir(trimmedHrefDir, {
+             recursive: true,
+           });
+-        } else if (!isDirectory) {
+-          await copyFile(fileUrl, targetUrl, projectDirectory);
+         }
++
++        await copyFile(fileUrl, targetUrl, projectDirectory);
+       });
+     }
+   } catch (e) {
