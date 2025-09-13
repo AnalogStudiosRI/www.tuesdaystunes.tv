@@ -1,6 +1,6 @@
-import { default as facebookSvg } from '../../assets/icons/facebook.svg';
-import { default as spotifySvg } from '../../assets/icons/spotify.svg';
-import { default as youtubeSvg } from '../../assets/icons/youtube.svg';
+import facebookSvg from '../../assets/icons/facebook.svg?type=raw';
+import spotifySvg from '../../assets/icons/spotify.svg?type=raw';
+import youtubeSvg from '../../assets/icons/youtube.svg?type=raw';
 
 export default class SocialLinks extends HTMLElement {
   constructor() {

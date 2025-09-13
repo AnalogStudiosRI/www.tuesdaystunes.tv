@@ -1,11 +1,16 @@
 import { defaultReporter } from '@web/test-runner';
 import { junitReporter } from '@web/test-runner-junit-reporter';
+import { greenwoodPluginImportRaw } from "@greenwood/plugin-import-raw";
+import { readAndMergeConfig } from "@greenwood/cli/src/lifecycles/config.js";
+import { initContext } from "@greenwood/cli/src/lifecycles/context.js";
 import fs from 'fs/promises';
 import path from 'path';
-import { greenwoodPluginImportSvg } from './plugin-import-svg.js';
 
-// create a direct instance of ImportSvgResource
-const importSvgResource = greenwoodPluginImportSvg()[0].provider({});
+// bootstrap custom plugin transforms from Greenwood
+const config = await readAndMergeConfig();
+const context = await initContext({ config });
+const compilation = { context, config };
+const rawResource = greenwoodPluginImportRaw()[0].provider(compilation);
 
 export default {
   files: './src/**/*.spec.js',
@@ -21,27 +26,21 @@ export default {
     reportDir: './reports'
   },
   plugins: [{
-    name: 'import-svg',
+    name: "import-raw",
     async transform(context) {
-      const url = new URL(`.${context.request.url}`, import.meta.url);
-      const request = new Request(url, { headers: new Headers(context.headers) });
-      const shouldIntercept = await importSvgResource.shouldIntercept(url, request);
+      const { url } = context.request;
 
-      if (shouldIntercept) {
-        const contents = await fs.readFile(url);
-        const initResponse = new Response(contents, {
-          headers: new Headers(context.headers)
-        });
-        const response = await importSvgResource.intercept(url, request, initResponse.clone());
+      if (url.endsWith("?type=raw")) {
+        const contents = await fs.readFile(new URL(`.${url}`, import.meta.url), "utf-8");
+        const response = await rawResource.intercept(null, null, new Response(contents));
+        const body = await response.text();
 
         return {
-          body: await response.text(),
-          headers: {
-            'Content-Type': response.headers.get('Content-Type')
-          }
+          body,
+          headers: { "Content-Type": "application/javascript" },
         };
       }
-    }
+    },
   }],
   middleware: [
     function rewriteIndex(context, next) {
