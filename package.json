@@ -17,7 +17,7 @@
     "dev": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood develop",
     "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build",
     "serve": "greenwood serve",
-    "start": "npm run clean && npm run build && npm run serve",
+    "start": "npm run build && npm run serve",
     "story:dev": "storybook dev -p 6006",
     "story:build": "storybook build",
     "story:serve": "storybook build && http-server ./storybook-static",
