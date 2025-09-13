@@ -14,9 +14,10 @@
     "url": "git+https://github.com/AnalogStudiosRI/www.tuesdaystunes.tv.git"
   },
   "scripts": {
-    "dev": "greenwood develop",
-    "build": "NODE_ENV=production greenwood build",
-    "serve": "NODE_ENV=production greenwood build && greenwood serve",
+    "dev": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood develop",
+    "build": "NODE_OPTIONS='--import @greenwood/cli/register' greenwood build",
+    "serve": "greenwood serve",
+    "start": "npm run build && npm run serve",
     "story:dev": "storybook dev -p 6006",
     "story:build": "storybook build",
     "story:serve": "storybook build && http-server ./storybook-static",
@@ -31,6 +32,7 @@
     "@eslint/js": "^9.11.1",
     "@esm-bundle/chai": "^4.3.4",
     "@greenwood/cli": "~0.33.0",
+    "@greenwood/plugin-import-raw": "^0.33.0",
     "@greenwood/plugin-postcss": "~0.33.0",
     "@ls-lint/ls-lint": "^1.10.0",
     "@storybook/addon-actions": "^7.0.0-beta.61",
@@ -55,5 +57,8 @@
     "stylelint": "^16.13.2",
     "stylelint-config-recommended": "^15.0.0",
     "tailwindcss": "^3.3.2"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.50.0"
   }
 }

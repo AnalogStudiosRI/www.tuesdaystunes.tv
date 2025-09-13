@@ -1,5 +1,6 @@
 import '../components/cast-and-crew/cast-and-crew.js';
 import '../components/upcoming-events/upcoming-events.js';
+import '../components/social-links/social-links.js';
 import '../components/spotify-playlist/spotify-playlist.js';
 import '../components/youtube-playlist/youtube-playlist.js';
 
@@ -54,6 +55,8 @@ export default class Home extends HTMLElement {
           >
             &#8211; Tunesy
           </p>
+
+          <tt-social-links></tt-social-links>
         </div>
       </div>
 
